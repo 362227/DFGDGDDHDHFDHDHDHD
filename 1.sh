@@ -903,7 +903,7 @@ start_menu
 
 mkdir /usr/share/nginx/html/download
 
-wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/default.conf -o "/etc/nginx/conf.d/default.conf"
+wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/default.conf -O "/etc/nginx/conf.d/default.conf"
 
 service nginx restart
 
