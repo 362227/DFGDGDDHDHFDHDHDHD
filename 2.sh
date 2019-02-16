@@ -1,3 +1,12 @@
+#1.安装transmission 
+wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate
+bash install-tr-control-cn.sh
+##（注：如要更新新版，执行此命令即可）
+##开机启动：
+chkconfig transmission-daemon on
+
+#2.安装RTMP
+#a.使用yum安装git:
 yum install git
 #b.下载nginx-rtmp-module,官方github地址：https://github.com/arut/nginx-rtmp-module
 git clone https://github.com/arut/nginx-rtmp-module.git
@@ -184,10 +193,6 @@ mkdir /var/www/html/download
 #设置开机启动/关闭
 systemctl enable httpd.service
 
-#安装SSR（系统支持：CentOS，Debian，Ubuntu）
-wget --no-check-certificate -O shadowsocks-go.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh
-chmod +x shadowsocks-go.sh
-./shadowsocks-go.sh 2>&1 | tee shadowsocks-go.log
 
 #安装mediainfo
 yum install mediainfo
@@ -204,6 +209,4 @@ chmod +x shadowsocksR.sh
 #安装Pip： 
 yum install python-pip 
 
-安装transmission一键包
-wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate
-bash install-tr-control-cn.sh
+
