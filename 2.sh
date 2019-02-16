@@ -154,6 +154,19 @@ server {
 }
 EOF
 
+# 在 /usr/share/目录下创建nginx/html/hls
+cd /usr/share
+mkdir nginx
+cd nginx
+mkdir html
+cd html
+mkdir hls
+chmod -R 777 /usr/share/nginx
+
+ls -ld nginx/ 
+
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf 
+
 # 安装FFMPEG
 cd ~
 wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
