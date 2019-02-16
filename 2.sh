@@ -182,24 +182,12 @@ else
     exit 1
 fi
 
-#安装SSR（系统支持：CentOS，Debian，Ubuntu）
-wget --no-check-certificate -O shadowsocks-go.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh
-chmod +x shadowsocks-go.sh
-./shadowsocks-go.sh 2>&1 | tee shadowsocks-go.log
-
-#安装mediainfo
-yum install mediainfo
-
-#安装youtube-dl
-curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
-chmod a+rx /usr/local/bin/youtube-dl
-
 #一键安装apache
 yum install httpd
 #启动apche
 service httpd start 
 apachectl start
-mkdir /usr/share/nginx/html/download
+mkdir /var/www/html/download
 #设置开机启动/关闭
 systemctl enable httpd.service
 
