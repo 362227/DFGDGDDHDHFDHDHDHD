@@ -846,7 +846,12 @@ wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/default.conf -O "/et
 service nginx restart
 
 
+#安装mediainfo
+yum install mediainfo
 
+#安装youtube-dl
+curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
+chmod a+rx /usr/local/bin/youtube-dl
 
 
 #安装SSR（系统支持：CentOS，Debian，Ubuntu）
