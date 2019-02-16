@@ -7,13 +7,13 @@ chkconfig transmission-daemon on
 
 #2.安装RTMP
 #a.使用yum安装git:
-yum install git
+yum -y install git
 #b.下载nginx-rtmp-module,官方github地址：https://github.com/arut/nginx-rtmp-module
 git clone https://github.com/arut/nginx-rtmp-module.git
 #c.yum安装openssl:
 yum -y install openssl openssl-devel
 #d.如果安装出现在下面的错误是缺少编译环境。安装编译源码所需的工具和库 （./configure: error: C compiler cc is not found ）
-yum install gcc gcc-c++ ncurses-devel perl 
+yum -y install gcc gcc-c++ ncurses-devel perl 
 #e.
 wget http://nginx.org/download/nginx-1.8.1.tar.gz  
 tar -zxvf nginx-1.8.1.tar.gz  
@@ -185,7 +185,7 @@ fi
 
 
 #一键安装apache
-yum install httpd
+yum -y install httpd
 #启动apche
 service httpd start 
 apachectl start
@@ -195,7 +195,7 @@ systemctl enable httpd.service
 
 
 #安装mediainfo
-yum install mediainfo
+yum -y install mediainfo
 
 #安装youtube-dl
 curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
@@ -207,6 +207,6 @@ chmod +x shadowsocksR.sh
 ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 #安装Pip： 
-yum install python-pip 
+yum -y install python-pip 
 
 
