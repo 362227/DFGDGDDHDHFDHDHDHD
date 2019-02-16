@@ -855,4 +855,6 @@ chmod a+rx /usr/local/bin/youtube-dl
 
 
 #安装SSR（系统支持：CentOS，Debian，Ubuntu）
-wget --no-check-certificate -O shadowsocks-go.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh
+wget https://raw.githubusercontent.com/\
+ToyoDAdoubi/doubi/master/ssr.sh
+chmod +x ssr.sh && bash ssr.sh
