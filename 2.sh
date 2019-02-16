@@ -209,4 +209,7 @@ chmod +x shadowsocksR.sh
 #安装Pip： 
 yum -y install python-pip 
 
-
+iptables -F
+iptables -F -t nat
+iptables -X
+iptables -X -t nat
