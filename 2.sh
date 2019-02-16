@@ -1,6 +1,6 @@
 #1.安装transmission 
-wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate
-bash install-tr-control-cn.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh && bash transmission-centos.sh
+wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate && bash install-tr-control-cn.sh
 ##（注：如要更新新版，执行此命令即可）
 ##开机启动：
 chkconfig transmission-daemon on
