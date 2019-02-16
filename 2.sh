@@ -190,6 +190,7 @@ yum -y install httpd
 service httpd start 
 apachectl start
 mkdir /var/www/html/download
+chmod -R 777 /var/www/html/download
 #设置开机启动/关闭
 systemctl enable httpd.service
 
