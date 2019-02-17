@@ -847,12 +847,11 @@ service nginx restart
 
 
 #安装mediainfo
-yum install mediainfo
+yum -y install mediainfo
 
 #安装youtube-dl
-curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
-chmod a+rx /usr/local/bin/youtube-dl
-
+wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+chmod a+rx /usr/local/bin/youtube-dl 
 
 #安装SSR（系统支持：CentOS，Debian，Ubuntu）
 wget https://raw.githubusercontent.com/\
