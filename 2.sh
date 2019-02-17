@@ -199,8 +199,8 @@ systemctl enable httpd.service
 yum -y install mediainfo
 
 #安装youtube-dl
-curl https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl
-chmod a+rx /usr/local/bin/youtube-dl
+wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+chmod a+rx /usr/local/bin/youtube-dl 
 
 #安装SSR
 wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
