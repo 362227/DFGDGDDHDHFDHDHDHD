@@ -217,3 +217,6 @@ iptables -F
 iptables -F -t nat
 iptables -X
 iptables -X -t nat
+
+#安装v2ray
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
