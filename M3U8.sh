@@ -1,3 +1,10 @@
+#0.安装Pip和killall： 
+yum -y install python-pip 
+pip install --upgrade pip
+yum -y install psmisc
+
+#安装1.streamlink
+pip install --upgrade streamlink
 
 #2.安装RTMP
 #a.使用yum安装git:
@@ -201,11 +208,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsoc
 chmod +x shadowsocksR.sh
 ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
-#安装Pip： 
-yum -y install python-pip 
-
 iptables -F
 iptables -F -t nat
 iptables -X
 iptables -X -t nat
-
