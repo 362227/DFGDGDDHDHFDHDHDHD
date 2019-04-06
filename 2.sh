@@ -223,3 +223,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD
 
 #安装streamlink
 pip install --upgrade streamlink
+
+#安装psmisc
+yum -y install psmisc
