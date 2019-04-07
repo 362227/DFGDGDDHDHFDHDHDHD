@@ -1,3 +1,8 @@
+wget https://raw.githubusercontent.com/hi-KK/Aria2-KodExplorer/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
+chmod +x Aria2+AriaNG+KodExplorer_Install.sh
+./Aria2+AriaNG+KodExplorer_Install.sh
+chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
+
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
 
