@@ -226,3 +226,6 @@ pip install --upgrade streamlink
 
 #安装psmisc
 yum -y install psmisc
+
+#安装mediainfo
+yum -y install mediainfo
