@@ -3,6 +3,16 @@ chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 
+cd /var/spool/cron
+touch hello.sh
+cat > /var/spool/cron/hello.sh <<EOF
+chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
+EOF
+cat > /var/spool/cron/root <<EOF
+46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+*/2 * * * * /var/spool/cron/hello.sh
+EOF
+
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
 
