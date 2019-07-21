@@ -4,7 +4,7 @@ wget https://github.com/ronggang/transmission-web-control/raw/master/release/ins
 ##（注：如要更新新版，执行此命令即可）
 ##开机启动：
 chkconfig transmission-daemon on
-EOF
+
 cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
 {
     "alt-speed-down": 50,
