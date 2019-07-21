@@ -94,7 +94,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
 }
 EOF
 
-cat > /etc/nginx/conf.d <<EOF
+cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
         listen       80 default_server;
         listen       [::]:80 default_server;
