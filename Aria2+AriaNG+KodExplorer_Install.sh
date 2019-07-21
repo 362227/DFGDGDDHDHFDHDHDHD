@@ -316,7 +316,7 @@ else
     echo -e "${red} Kodexplorer下载失败 ${font}"
     exit 1
 fi
-unzip kodexplorer4.36.zip
+unzip kodexplorer4.40.zip
 if [ $? -eq 0 ];then
     echo -e "${green} Kodexplorer解压成功 ${font}"
 else 
