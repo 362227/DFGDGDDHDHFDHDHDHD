@@ -2,7 +2,7 @@ wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BA
 chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
-
+chmod -R 777 /usr/share/nginx/html
 cd /var/spool/cron
 touch hello.sh
 cat > /var/spool/cron/hello.sh <<EOF
