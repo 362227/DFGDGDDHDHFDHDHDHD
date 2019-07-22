@@ -113,7 +113,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "rpc-enabled": true,
     "rpc-host-whitelist": "",
     "rpc-host-whitelist-enabled": true,
-    "rpc-password": "{d2754746ac33a7e2e905ffdbf71d3d0b85b790d6UmjnPhhc",
+    "rpc-password": "{46d97d59176b56259025012772d5d4ad36d03892saLCczwE",
     "rpc-port": 9091,
     "rpc-url": "/transmission/",
     "rpc-username": "",
