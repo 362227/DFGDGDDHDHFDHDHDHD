@@ -9,7 +9,7 @@ server {
         listen       80 default_server;
         listen       [::]:80 default_server;
         # 这里改动了，也可以写你的域名
-        server_name  192.168.17.26;
+        server_name  107.182.176.116;
         
         # 默认网站根目录（www目录）
         root         /usr/share/nginx/html;
@@ -192,3 +192,11 @@ pip install --upgrade streamlink
 
 #安装psmisc
 yum -y install psmisc
+
+sudo pip install requests
+easy_install beautifulsoup4
+pip install beautifulsoup4
+easy_install PyRSS2Gen
+pip install PyRSS2Gen
+easy_install beautifulsoup
+pip install beautifulsoup
