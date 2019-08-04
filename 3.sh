@@ -45,6 +45,13 @@ server {
     }
 EOF
 
+cat > /usr/share/nginx/kodexplorer/a.sh <<EOF
+python /usr/share/nginx/kodexplorer/ytbtest10.py
+python /usr/share/nginx/kodexplorer/ytbtest10SW.py
+chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
+EOF
+
+
 cd /var/spool/cron
 touch hello.sh
 cat > /var/spool/cron/hello.sh <<EOF
@@ -52,8 +59,11 @@ chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 EOF
 cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
-*/2 * * * * /var/spool/cron/hello.sh
+* * * * * /usr/share/nginx/kodexplorer/a.sh
+* * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 EOF
+
+
 
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
