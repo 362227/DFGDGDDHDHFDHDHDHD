@@ -62,8 +62,8 @@ cat > /var/spool/cron/root <<EOF
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 EOF
-
-
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10.py -o /usr/share/nginx/kodexplorer/ytbtest10.py
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10SW.py -o /usr/share/nginx/kodexplorer/ytbtest10SW.py
 
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
@@ -200,3 +200,4 @@ easy_install PyRSS2Gen
 pip install PyRSS2Gen
 easy_install beautifulsoup
 pip install beautifulsoup
+
