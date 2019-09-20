@@ -1,8 +1,6 @@
 wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
 chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
-chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
-chmod -R 777 /usr/share/nginx/html
 
 cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
@@ -201,3 +199,5 @@ pip install PyRSS2Gen
 easy_install beautifulsoup
 pip install beautifulsoup
 
+chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
+chmod -R 777 /usr/share/nginx/html
