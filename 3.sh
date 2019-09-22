@@ -4,7 +4,7 @@ chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 
 cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
-        listen       80 default_server;
+        listen       8081 default_server;
         listen       [::]:80 default_server;
         # 这里改动了，也可以写你的域名
         server_name  107.182.176.116;
@@ -43,6 +43,31 @@ server {
     }
 EOF
 
+cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
+server {
+    listen       80;
+    server_name  362227.space;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/kodexplorer;
+        index  index.html index.htm index.php;
+    }
+
+    location ~ \.php$ {
+        root           /usr/share/nginx/kodexplorer;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+}
+
+EOF
+
 cat > /usr/share/nginx/kodexplorer/a.sh <<EOF
 python /usr/share/nginx/kodexplorer/ytbtest10.py
 python /usr/share/nginx/kodexplorer/ytbtest10SW.py
@@ -60,6 +85,8 @@ cat > /var/spool/cron/root <<EOF
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 EOF
+
+
 wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10.py -o /usr/share/nginx/kodexplorer/ytbtest10.py
 wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10SW.py -o /usr/share/nginx/kodexplorer/ytbtest10SW.py
 
