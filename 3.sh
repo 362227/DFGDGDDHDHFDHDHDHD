@@ -87,8 +87,8 @@ cat > /var/spool/cron/root <<EOF
 EOF
 
 
-wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10.py -o /usr/share/nginx/kodexplorer/ytbtest10.py
-wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10SW.py -o /usr/share/nginx/kodexplorer/ytbtest10SW.py
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10.py -O /usr/share/nginx/kodexplorer/ytbtest10.py
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/ytbtest10SW.py -O /usr/share/nginx/kodexplorer/ytbtest10SW.py
 
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
