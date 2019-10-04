@@ -164,5 +164,8 @@ pip install beautifulsoup
 #安装7Z
 yum install -y p7zip
 
+#安装gdlink
+wget --no-check-certificate -qO /usr/local/bin/gdlink 'https://www.moerats.com/usr/shell/gdlink.sh' && chmod a+x /usr/local/bin/gdlink
+
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html
