@@ -161,5 +161,8 @@ pip install PyRSS2Gen
 easy_install beautifulsoup
 pip install beautifulsoup
 
+#安装7Z
+yum install -y p7zip
+
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html
