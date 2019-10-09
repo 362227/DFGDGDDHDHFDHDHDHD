@@ -50,7 +50,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "blocklist-url": "http://www.example.com/blocklist",
     "cache-size-mb": 4,
     "dht-enabled": true,
-    "download-dir": "/var/lib/transmission/Downloads",
+    "download-dir": "/usr/share/nginx/kodexplorer/data/User/admin/home",
     "download-queue-enabled": true,
     "download-queue-size": 5,
     "encryption": 1,
