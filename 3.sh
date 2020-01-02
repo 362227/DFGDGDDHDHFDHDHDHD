@@ -68,10 +68,14 @@ server {
 
 EOF
 
-cat > /usr/share/nginx/kodexplorer/a.sh <<EOF
+cat > #!/bin/sh
+
 python /usr/share/nginx/kodexplorer/ytbtest10.py
 python /usr/share/nginx/kodexplorer/ytbtest10SW.py
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
+chmod -R 777 /usr/share/nginx/html/
+chmod -R 777 /usr/share/nginx/kodexplorer/
+rm -rf /var/spool/mail/
 EOF
 
 
