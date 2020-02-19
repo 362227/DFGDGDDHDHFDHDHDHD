@@ -68,7 +68,8 @@ server {
 
 EOF
 
-cat > #!/bin/sh
+cat /usr/share/nginx/kodexplorer/a.sh <<EOF 
+> #!/bin/sh
 
 python /usr/share/nginx/kodexplorer/ytbtest10.py
 python /usr/share/nginx/kodexplorer/ytbtest10SW.py
