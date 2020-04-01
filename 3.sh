@@ -231,5 +231,9 @@ pip install PyRSS2Gen
 easy_install beautifulsoup
 pip install beautifulsoup
 
+#安装googledriver 
+wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
+chmod +x gdown.pl
+
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html
