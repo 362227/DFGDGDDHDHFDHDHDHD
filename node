@@ -4,6 +4,6 @@ ln -s /root/node-v10.14.1-linux-x64/bin/node /usr/local/bin/node
 ln -s /root/node-v10.14.1-linux-x64/bin/npm /usr/local/bin/npm
 npm install
 npm install pm2 -g
-mv /usr/local/bin/pm2 /tmp/
 ln -s /root/node-v10.14.1-linux-x64/lib/node_modules/pm2/bin/pm2 /usr/local/bin/
+mv /usr/local/bin/pm2 /tmp/
 yum install git
