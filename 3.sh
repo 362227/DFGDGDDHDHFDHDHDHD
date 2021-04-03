@@ -237,3 +237,13 @@ chmod +x gdown.pl
 
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html
+
+#安装git
+yum install git -y
+
+#安装yarn
+curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo yum install nodejs -y
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+sudo yum install yarn -y
