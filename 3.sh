@@ -70,7 +70,6 @@ cat /usr/share/nginx/kodexplorer/a.sh <<EOF
 > #!/bin/sh
 
 
-
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html/
 chmod -R 777 /usr/share/nginx/kodexplorer/
@@ -83,6 +82,9 @@ wget --header="Cookie:_rails_session=kg8kDMW%2BVZIOTI6CxntCKrqXDKtVdjuenJiW%2BO5
 
 wget --header="Cookie:_rails_session=Y9kMVIFCAYna5qDBdvq3w4Vcrt%2BiWJdBYGz%2FgmPC4n7hH%2F%2Fzc8ZtbNf8ug6NAg3xPA7%2FTGLpbbNU6s2UeXB8xe%2BP8CHOdEO9u%2Be40t1XHdYDFYBZftYZAh1M3lCAsI6NFytQhAEyU8hqdJUhaDSaanacyoFM8g957zau%2Flg8fMjkOrZWlUVIvTrFFMJAu8l89BtLlTKenAHpVw%2FntfNp0Kufqkarh79stTtZ--wFbruVSJpzTMtZXM--uZnPKaqZeXo32FKWoKUmNQ%3D%3D" https://huginn103622275.herokuapp.com/scenarios/8/export.json -O /usr/share/nginx/kodexplorer/rss/huginn103622275.json 
 
+wget --header="Cookie:_rails_session=U4HvIyxVS8jt%2Ba0QpY9jSgy1CvFXw5zCcQLfYA1LjcIiALKLR%2FOCBsQuTMwXx%2B8cx9fjLXlhRvc3DFg3G9RNzA48jw6rHl4DETbAOTT9sYXbOHGCQsu7rwZWxwrJt1kFUWakSYDszpcUIEyQ6K301dm%2BB%2FmypJeeHWsWNeykBMroc%2B6%2FpU%2Bq0AwXYMX84NrQ%2F9Fut7olhXvLNkUaemiO%2B%2F9pGw05wXokhwe8--%2BV0xjBHt46hnAQgg--nJSYD%2FM73K9DcrWqeWRBHg%3D%3D" https://huginn103622274.herokuapp.com/scenarios/43/export.json -O /usr/share/nginx/kodexplorer/rss/huginn103622274.json 
+
+wget --header="Cookie:_rails_session=p0RYTfw3O9EvDDEpQgf99Yeq%2BuQk%2FY9kxMV8FYbP8Cfa%2B4gXSVytUdYOrC6mhW3Yg3Lxdpeya7afBwHaevzn%2F3lRCmZE94j1cuwjaFW7mRfixmIfzPPMqdoN0nrjhEa6AVfB8RXmRu40jqHJZa9tH8as4u7OTaixrqtlOMNFajXLjX1OCYJPt0mTZhbIrfpBirfcEUXqaGN9YnkKDB1qJdf%2F7%2FWlkt%2Bbsnzg--OytPsn%2BYAsuNloNn--rOj2RMkCUP7yf75KSgQjVA%3D%3D" https://huginn3622274.herokuapp.com/scenarios/4/export.json -O /usr/share/nginx/kodexplorer/rss/huginn3622274.json 
 
 EOF
 
@@ -96,7 +98,7 @@ cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
-0 2 * * * rclone copy /usr/share/nginx/kodexplorer/rss/ 10362227:backup
+0 2 * * * rclone copy /usr/share/nginx/kodexplorer/rss/ 10362227:backup --transfers=16
 EOF
 
 
