@@ -69,12 +69,21 @@ EOF
 cat /usr/share/nginx/kodexplorer/a.sh <<EOF 
 > #!/bin/sh
 
-python /usr/share/nginx/kodexplorer/ytbtest10.py
-python /usr/share/nginx/kodexplorer/ytbtest10SW.py
+
+
 chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 chmod -R 777 /usr/share/nginx/html/
 chmod -R 777 /usr/share/nginx/kodexplorer/
 rm -rf /var/spool/mail/
+rm -rf /usr/share/nginx/kodexplorer/data/User/admin/data/temp/*
+rm -rf /var/log/php-fpm/*
+rm -rf etc/nginx/logs
+
+wget --header="Cookie:_rails_session=kg8kDMW%2BVZIOTI6CxntCKrqXDKtVdjuenJiW%2BO54j1l0qrrjSeNOztNNU0VyV1pakr38AkOMlbKMgTC0E9Q6iV7cvPXDeGTiUIeyFrhMsCM2OdJo7fzE49xz9O51i5O8fkRrC%2Bb7wvpNrj8ne2kU918XjVtReRO1DhnG%2BD13bbLcZmHJJLq5uMO1cPdd7F82riTOh78EpAOZfPXaO%2F1OrQRBTifAODCuBQ1lw2wU2EDbPfZtDnuxMrlcoqW6t1CrIKTH%2BHyHeF7shFG4ATZpDhwfEsKlnRoj%2Bw2e2gY1tfXOmMxtvtH3O6j8aV6H4xtd%2FJFzvYyT39iM8CqBBF120qQT%2FbjczCGpXPxK72WLE5W3dLv4UFiZiMZVhtEHWTcFfT8roZClW67QxP%2B48E3r5ywW7NdHBRia5LxwDJVh0BJTRcyVjzsXKaODVUMGRSuGXeXnPgiHkGvSLO5jynwiFIYr70Ab63lwXae%2FI9IfdzmiC8MA4EfxSCgcW8OgRka9tzZt8JlXiBCoYrT80xO5TVhsyiuF2k92qyIPdboa%2F8SSiQtich8sSb2OPqh8c0QM5VHO0id6clTPxKAN5zs%3D--VwgHy3uR6%2Balr2cb--cpRLJ2uV1lFTONyjR9apjA%3D%3D" https://huginn-103622272.herokuapp.com/scenarios/4/export.json -O /usr/share/nginx/kodexplorer/rss/huginn-103622272.json
+
+wget --header="Cookie:_rails_session=Y9kMVIFCAYna5qDBdvq3w4Vcrt%2BiWJdBYGz%2FgmPC4n7hH%2F%2Fzc8ZtbNf8ug6NAg3xPA7%2FTGLpbbNU6s2UeXB8xe%2BP8CHOdEO9u%2Be40t1XHdYDFYBZftYZAh1M3lCAsI6NFytQhAEyU8hqdJUhaDSaanacyoFM8g957zau%2Flg8fMjkOrZWlUVIvTrFFMJAu8l89BtLlTKenAHpVw%2FntfNp0Kufqkarh79stTtZ--wFbruVSJpzTMtZXM--uZnPKaqZeXo32FKWoKUmNQ%3D%3D" https://huginn103622275.herokuapp.com/scenarios/8/export.json -O /usr/share/nginx/kodexplorer/rss/huginn103622275.json 
+
+
 EOF
 
 
@@ -87,6 +96,7 @@ cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
+0 2 * * * rclone copy /usr/share/nginx/kodexplorer/rss/ 10362227:backup
 EOF
 
 
