@@ -4,43 +4,41 @@ chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 
 cat > /etc/nginx/conf.d/default.conf <<EOF
 server {
-        listen       8081 default_server;
-        listen       [::]:80 default_server;
-        # 这里改动了，也可以写你的域名
-        server_name  107.182.176.116;
-        
-        # 默认网站根目录（www目录）
-        root         /usr/share/nginx/html;
-        # Load configuration files for the default server block.
-        include /etc/nginx/default.d/*.conf;
+    listen       8081;
+    server_name  localhost;
 
-        location / {
-            # 这里改动了 定义首页索引文件的名称
-            index index.php index.html index.htm;
-        }
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
 
-        error_page 404 /404.html;
-            location = /40x.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-            location = /50x.html {
-        }
-
-        # 这里新加的
-        # PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI协议默认配置.
-        # Fastcgi服务器和程序(PHP,Python)沟通的协议.
-        location ~ \.php$ {
-            # 设置监听端口
-            fastcgi_pass   127.0.0.1:9000;
-            # 设置nginx的默认首页文件(上面已经设置过了，可以删除)
-            fastcgi_index  index.php;
-            # 设置脚本文件请求的路径
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            # 引入fastcgi的配置文件
-            include        fastcgi_params;
-        }
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
     }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+
 EOF
 
 cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
