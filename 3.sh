@@ -98,7 +98,7 @@ cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
-0 2 * * * rclone sync /usr/share/nginx/kodexplorer/ 10362227:backup
+0 3 * * * screen rclone copy /usr/share/nginx/kodexplorer/ 10362227:backup --exclude "/{config,plugins,static,data,app}/" --local-no-check-updated
 EOF
 
 
