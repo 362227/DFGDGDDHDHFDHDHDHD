@@ -98,7 +98,7 @@ cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
-0 2 * * * rclone copy /usr/share/nginx/kodexplorer/rss/ 10362227:backup --transfers=16
+0 2 * * * rclone sync /usr/share/nginx/kodexplorer/ 10362227:backup
 EOF
 
 
