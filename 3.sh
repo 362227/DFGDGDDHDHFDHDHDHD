@@ -2,66 +2,6 @@ wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BA
 chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
 
-cat > /etc/nginx/conf.d/default.conf <<EOF
-server {
-    listen       8081;
-    server_name  localhost;
-
-    #charset koi8-r;
-    #access_log  /var/log/nginx/host.access.log  main;
-
-    location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
-    #location ~ \.php$ {
-    #    root           html;
-    #    fastcgi_pass   127.0.0.1:9000;
-    #    fastcgi_index  index.php;
-    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-    #    include        fastcgi_params;
-
-EOF
-
-cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
-server {
-    listen       80;
-    server_name  362227.space;
-
-    #charset koi8-r;
-    #access_log  /var/log/nginx/host.access.log  main;
-
-    location / {
-        root   /usr/share/nginx/kodexplorer;
-        index  index.html index.htm index.php;
-    }
-
-    location ~ \.php$ {
-        root           /usr/share/nginx/kodexplorer;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-
 }
 
 EOF
@@ -230,7 +170,49 @@ iptables -X
 iptables -X -t nat
 
 #安装v2ray
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
+wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate && bash install-tr-control-cn.sh
+#旧方法bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
+
+touch /etc/nginx/conf/conf.d/kodexplorer.conf
+cat > /etc/nginx/conf/conf.d/kodexplorer.conf <<EOF
+server {
+    listen       80;
+    server_name  362227.top;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/kodexplorer;
+        index  index.html index.htm index.php;
+    }
+
+    location ~ \.php$ {
+        root           /usr/share/nginx/kodexplorer;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+EOF
+
+touch /etc/nginx/conf/conf.d/ariang.conf
+cat > /etc/nginx/conf/conf.d/ariang.conf <<EOF
+server {
+    listen       80;
+    server_name  ariang.362227.top;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/ariang;
+        index  index.html index.htm index.php;
+    }
+}
+EOF
+ 
+
 
 #安装streamlink
 pip install --upgrade streamlink
