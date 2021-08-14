@@ -115,10 +115,9 @@ wget https://github.com/ronggang/transmission-web-control/raw/master/release/ins
 ##开机启动：
 chkconfig transmission-daemon on
 
-#修改密码安装transmission
+#修改密码transmission
 ##停止
-systemctl stop transmission-daemon.service
-
+systemctl stop transmission-daemon
 
 
 cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
@@ -136,7 +135,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "blocklist-url": "http://www.example.com/blocklist",
     "cache-size-mb": 4,
     "dht-enabled": true,
-    "download-dir": "/var/lib/transmission/Downloads",
+    "download-dir": "/usr/share/nginx/kodexplorer/data/User/admin/home/",
     "download-queue-enabled": true,
     "download-queue-size": 5,
     "encryption": 1,
