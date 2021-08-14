@@ -220,6 +220,23 @@ server {
 EOF
 
 
+touch /etc/nginx/conf/conf.d/transmission.conf
+cat > /etc/nginx/conf/conf.d/transmission.conf <<EOF
+server {
+    listen       80;
+    server_name  transmission.362227.top;
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        proxy_pass        http://localhost:9091;
+    }
+
+}
+EOF
+
+
+
+
 #安装streamlink
 pip install --upgrade streamlink
 yum install python3-pip -y
