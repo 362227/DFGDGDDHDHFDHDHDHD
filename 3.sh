@@ -200,6 +200,19 @@ server {
 }
 EOF
  
+touch /etc/nginx/conf/conf.d/rsshub.conf
+cat > /etc/nginx/conf/conf.d/rsshub.conf <<EOF
+server {
+    listen       80;
+    server_name  rsshub.362227.top;
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        proxy_pass        http://localhost:1200;
+    }
+
+}
+EOF
 
 
 #安装streamlink
