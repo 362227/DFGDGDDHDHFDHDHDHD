@@ -75,7 +75,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "download-queue-enabled": true,
     "download-queue-size": 5,
     "encryption": 1,
-    "idle-seeding-limit": 30,
+    "idle-seeding-limit": 500,
     "idle-seeding-limit-enabled": false,
     "incomplete-dir": "/var/lib/transmission/Downloads",
     "incomplete-dir-enabled": false,
@@ -83,8 +83,8 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "message-level": 1,
     "peer-congestion-algorithm": "",
     "peer-id-ttl-hours": 6,
-    "peer-limit-global": 200,
-    "peer-limit-per-torrent": 50,
+    "peer-limit-global": 2000,
+    "peer-limit-per-torrent": 2000,
     "peer-port": 51413,
     "peer-port-random-high": 65535,
     "peer-port-random-low": 49152,
@@ -234,7 +234,8 @@ server {
 }
 EOF
 
-
+#重启nginx
+sudo systemctl restart nginx
 
 
 #安装streamlink
