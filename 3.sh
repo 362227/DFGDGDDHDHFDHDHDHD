@@ -115,6 +115,12 @@ wget https://github.com/ronggang/transmission-web-control/raw/master/release/ins
 ##开机启动：
 chkconfig transmission-daemon on
 
+#修改密码安装transmission
+##停止
+systemctl stop transmission-daemon.service
+
+
+
 cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
 {
     "alt-speed-down": 50,
@@ -163,7 +169,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
     "rpc-enabled": true,
     "rpc-host-whitelist": "",
     "rpc-host-whitelist-enabled": true,
-    "rpc-password": "{46d97d59176b56259025012772d5d4ad36d03892saLCczwE",
+    "rpc-password": "y362227",
     "rpc-port": 9091,
     "rpc-url": "/transmission/",
     "rpc-username": "",
@@ -229,6 +235,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD
 
 #安装streamlink
 pip install --upgrade streamlink
+yum install python3-pip -y
+pip3 install streamlink
 
 #安装psmisc
 yum -y install psmisc
