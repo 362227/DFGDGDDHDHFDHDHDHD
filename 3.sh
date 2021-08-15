@@ -184,12 +184,8 @@ acme.sh --issue --standalone -d ariang.362227.top
 touch /etc/nginx/conf/conf.d/kodexplorer.conf
 cat > /etc/nginx/conf/conf.d/kodexplorer.conf <<EOF
 server {
-   listen 443 ssl;
-    server_name 362227.top;
- 
-    ssl on;
-    ssl_certificate /root/.acme.sh/362227.top/fullchain.cer;
-    ssl_certificate_key /root/.acme.sh362227.top/362227.top.key;
+    listen       80;
+    server_name  362227.top;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
@@ -203,45 +199,18 @@ server {
         fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
         include        fastcgi_params;
     }
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name 362227.top;
- 
-    location / {
-        return 301 https://$host$request_uri;
-    }
-}
 EOF
 
 touch /etc/nginx/conf/conf.d/ariang.conf
 cat > /etc/nginx/conf/conf.d/ariang.conf <<EOF
 server {
-   listen 443 ssl;
-    server_name ariang.362227.top;
- 
-    ssl on;
-    ssl_certificate /root/.acme.sh/ariang.362227.top/fullchain.cer;
-    ssl_certificate_key /root/.acme.sh/ariang.362227.top/ariang.362227.top.key;
-
+    listen       80;
+    server_name  ariang.362227.top;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
-
     location / {
         root   /usr/share/nginx/ariang;
         index  index.html index.htm index.php;
-    }
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ariang.362227.top;
- 
-    location / {
-        return 301 https://$host$request_uri;
     }
 }
 EOF
@@ -249,27 +218,12 @@ EOF
 touch /etc/nginx/conf/conf.d/rsshub.conf
 cat > /etc/nginx/conf/conf.d/rsshub.conf <<EOF
 server {
-   listen 443 ssl;
-    server_name rsshub.362227.top;
- 
-    ssl on;
-    ssl_certificate /root/.acme.sh/rsshub.362227.top/fullchain.cer;
-    ssl_certificate_key /root/.acme.sh/rsshub.362227.top/rsshub.362227.top.key;
+    listen       80;
+    server_name  rsshub.362227.top;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
         proxy_pass        http://localhost:1200;
-    }
-
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name rsshub.362227.top;
- 
-    location / {
-        return 301 https://$host$request_uri;
     }
 }
 EOF
@@ -278,178 +232,21 @@ EOF
 touch /etc/nginx/conf/conf.d/transmission.conf
 cat > /etc/nginx/conf/conf.d/transmission.conf <<EOF
 server {
-   listen 443 ssl;
-    server_name transmission.362227.top;
- 
-    ssl on;
-    ssl_certificate /root/.acme.sh/transmission.362227.top/fullchain.cer;
-    ssl_certificate_key /root/.acme.sh/transmission.362227.top/transmission.362227.top.key;
+    listen       80;
+    server_name  transmission.362227.top;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
         proxy_pass        http://localhost:9091;
     }
-
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name transmission.362227.top;
- 
-    location / {
-        return 301 https://$host$request_uri;
-    }
 }
 EOF
+
+
 
 mkdir /usr/share/nginx/kodexplorer/data/User/admin/home/hls
-cat > /etc/nginx/conf/nginx.conf <<EOF
 
-user  root;
-worker_processes  3;
-
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
-
-#pid        logs/nginx.pid;
-
-
-events {
-    worker_connections  4096;
-}
-
-
-rtmp {    
-    server {    
-        listen 1935;  #监听的端口  
-        chunk_size 4000;    
-           
-        application hls {  #rtmp推流请求路径  
-            live on;    
-            hls on;    
-            hls_path /usr/share/nginx/kodexplorer/data/User/admin/home/hls;    
-            hls_fragment 5s; 
-            hls_playlist_length 14660s;  #总共可以回看的事件，这里设置的是1分钟。   
-        }    
-    }    
-}
-
-
-
-
-
-
-
-
-
-
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-
-    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-    #                  '$status $body_bytes_sent "$http_referer" '
-    #                  '"$http_user_agent" "$http_x_forwarded_for"';
-
-    #access_log  logs/access.log  main;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    #keepalive_timeout  0;
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-    server {
-        listen       80;
-        server_name  localhost;
-
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-
-        location / {
-            root   /usr/share/nginx/kodexplorer/data/User/admin/home/hls;
-            index  index.html index.htm;
-        }
-
-        #error_page  404              /404.html;
-
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   /usr/share/nginx/kodexplorer/data/User/admin/home/hls;
-        }
-
-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-        #
-        #location ~ \.php$ {
-        #    proxy_pass   http://127.0.0.1;
-        #}
-
-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-        #
-        #location ~ \.php$ {
-        #    root           html;
-        #    fastcgi_pass   127.0.0.1:9000;
-        #    fastcgi_index  index.php;
-        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-        #    include        fastcgi_params;
-        #}
-
-        # deny access to .htaccess files, if Apache's document root
-        # concurs with nginx's one
-        #
-        #location ~ /\.ht {
-        #    deny  all;
-        #}
-    }
-
-
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    #server {
-    #    listen       443 ssl;
-    #    server_name  localhost;
-
-    #    ssl_certificate      cert.pem;
-    #    ssl_certificate_key  cert.key;
-
-    #    ssl_session_cache    shared:SSL:1m;
-    #    ssl_session_timeout  5m;
-
-    #    ssl_ciphers  HIGH:!aNULL:!MD5;
-    #    ssl_prefer_server_ciphers  on;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-include conf.d/*.conf;
-}
-
-EOF
-
+/etc/nginx/conf/nginx.conf
 
 
 #重启nginx
