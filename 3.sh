@@ -1,11 +1,8 @@
-#安装KOD
-wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
-chmod +x Aria2+AriaNG+KodExplorer_Install.sh
-./Aria2+AriaNG+KodExplorer_Install.sh
+
 
 
 #安装v2ray
-wget -N https://github.com/10362227/DFGDGDDHDHFDHDHDHD/raw/master/3.sh  && chmod +x 3.sh && ./3.sh
+wget -N --no-check-certificate -q -O install_3.sh "https://github.com/10362227/DFGDGDDHDHFDHDHDHD/blob/master/install_3.sh" && chmod +x install_3.sh && bash install_3.sh
 #wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
 #旧方法 bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
 
