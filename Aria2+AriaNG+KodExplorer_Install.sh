@@ -104,6 +104,25 @@ else
 fi
 
 
+#Install Nginx
+#touch /etc/yum.repos.d/nginx.repo
+#cat > /etc/yum.repos.d/nginx.repo <<EOF
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/\$basearch/
+gpgcheck=0
+enabled=1
+EOF
+#yum -y install nginx
+if [ $? -eq 0 ];then
+    echo -e "${green} Nginx安装成功 ${font}"
+else 
+    echo -e "${red} Nginx安装失败 ${font}"
+    exit 1
+fi
+
+
+
 #Install PHP7.2
 rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 yum -y install php72w-fpm php72w-cli php72w-common php72w-gd php72w-mysqlnd php72w-odbc php72w-pdo php72w-pgsql php72w-xmlrpc php72w-xml php72w-mbstring php72w-opcache
