@@ -1,14 +1,14 @@
+#安装v2ray
+wget -N --no-check-certificate -q -O install_5.sh "https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/install_5.sh" && chmod +x install_5.sh && bash install_5.sh
+#wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
+#旧方法 bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
+
+
 #安装KOD
 wget https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
 #wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
 chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
-
-
-#安装v2ray
-wget -N --no-check-certificate -q -O install_5.sh "https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/install_5.sh" && chmod +x install_5.sh && bash install_5.sh
-#wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
-#旧方法 bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
 
 
 #安装yarn
@@ -167,21 +167,35 @@ iptables -F -t nat
 iptables -X
 iptables -X -t nat
 
+#安装证书HTTPS
+#先关闭80端口
+lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
+curl https://get.acme.sh | sh
+source ~/.bashrc
+acme.sh --issue --standalone -d 362227.top
+acme.sh --issue --standalone -d rsshub.362227.top
+acme.sh --issue --standalone -d transmission.362227.top
+acme.sh --issue --standalone -d ariang.362227.top
+
+
+
+
 
 touch /etc/nginx/conf/conf.d/kodexplorer.conf
 cat > /etc/nginx/conf/conf.d/kodexplorer.conf <<EOF
 server {
-    listen       80;
-    server_name  362227.top;
-
+   listen 443 ssl;
+    server_name 362227.top;
+ 
+    ssl on;
+    ssl_certificate /root/.acme.sh/362227.top/fullchain.cer;
+    ssl_certificate_key /root/.acme.sh362227.top/362227.top.key;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
-
     location / {
         root   /usr/share/nginx/kodexplorer;
         index  index.html index.htm index.php;
     }
-
     location ~ \.php$ {
         root           /usr/share/nginx/kodexplorer;
         fastcgi_pass   127.0.0.1:9000;
@@ -190,13 +204,27 @@ server {
         include        fastcgi_params;
     }
 }
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name 362227.top;
+ 
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
 EOF
 
 touch /etc/nginx/conf/conf.d/ariang.conf
 cat > /etc/nginx/conf/conf.d/ariang.conf <<EOF
 server {
-    listen       80;
-    server_name  ariang.362227.top;
+   listen 443 ssl;
+    server_name ariang.362227.top;
+ 
+    ssl on;
+    ssl_certificate /root/.acme.sh/ariang.362227.top/fullchain.cer;
+    ssl_certificate_key /root/.acme.sh/ariang.362227.top/ariang.362227.top.key;
 
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
@@ -206,13 +234,27 @@ server {
         index  index.html index.htm index.php;
     }
 }
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ariang.362227.top;
+ 
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
 EOF
  
 touch /etc/nginx/conf/conf.d/rsshub.conf
 cat > /etc/nginx/conf/conf.d/rsshub.conf <<EOF
 server {
-    listen       80;
-    server_name  rsshub.362227.top;
+   listen 443 ssl;
+    server_name rsshub.362227.top;
+ 
+    ssl on;
+    ssl_certificate /root/.acme.sh/rsshub.362227.top/fullchain.cer;
+    ssl_certificate_key /root/.acme.sh/rsshub.362227.top/rsshub.362227.top.key;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
@@ -220,20 +262,44 @@ server {
     }
 
 }
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name rsshub.362227.top;
+ 
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
 EOF
 
 
 touch /etc/nginx/conf/conf.d/transmission.conf
 cat > /etc/nginx/conf/conf.d/transmission.conf <<EOF
 server {
-    listen       80;
-    server_name  transmission.362227.top;
+   listen 443 ssl;
+    server_name transmission.362227.top;
+ 
+    ssl on;
+    ssl_certificate /root/.acme.sh/transmission.362227.top/fullchain.cer;
+    ssl_certificate_key /root/.acme.sh/transmission.362227.top/transmission.362227.top.key;
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
         proxy_pass        http://localhost:9091;
     }
 
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name transmission.362227.top;
+ 
+    location / {
+        return 301 https://$host$request_uri;
+    }
 }
 EOF
 
@@ -410,8 +476,8 @@ pip install beautifulsoup
 #wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
 #chmod +x gdown.pl
 
-chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
-chmod -R 777 /usr/share/nginx/html
+chmod -R 777 /usr/share/nginx/kodexplorer/
+chmod -R 777 /usr/share/nginx/
 
 
 #安装rclone
