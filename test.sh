@@ -417,3 +417,6 @@ nginx_install() {
     rm -rf ../openssl-"${openssl_version}"
     rm -rf ../nginx-"${nginx_version}".tar.gz
     rm -rf ../openssl-"${openssl_version}".tar.gz
+    # 添加配置文件夹，适配旧版脚本
+    mkdir ${nginx_dir}/conf/conf.d
+}
