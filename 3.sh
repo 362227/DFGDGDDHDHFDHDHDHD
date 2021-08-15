@@ -235,7 +235,7 @@ server {
 }
 EOF
 
-
+mkdir /usr/share/nginx/kodexplorer/data/User/admin/home/hls
 cat > /etc/nginx/conf/nginx.conf <<EOF
 
 user  root;
@@ -251,6 +251,30 @@ worker_processes  3;
 events {
     worker_connections  4096;
 }
+
+
+rtmp {    
+    server {    
+        listen 1935;  #监听的端口  
+        chunk_size 4000;    
+           
+        application hls {  #rtmp推流请求路径  
+            live on;    
+            hls on;    
+            hls_path /usr/share/nginx/kodexplorer/data/User/admin/home/hls;    
+            hls_fragment 5s; 
+            hls_playlist_length 14660s;  #总共可以回看的事件，这里设置的是1分钟。   
+        }    
+    }    
+}
+
+
+
+
+
+
+
+
 
 
 http {
@@ -280,8 +304,8 @@ http {
         #access_log  logs/host.access.log  main;
 
         location / {
-            root   /usr/share/nginx/kodexplorer;
-            index  index.html index.htm index.php;
+            root   /usr/share/nginx/kodexplorer/data/User/admin/home/hls;
+            index  index.html index.htm;
         }
 
         #error_page  404              /404.html;
@@ -290,7 +314,7 @@ http {
         #
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
-            root   html;
+            root   /usr/share/nginx/kodexplorer/data/User/admin/home/hls;
         }
 
         # proxy the PHP scripts to Apache listening on 127.0.0.1:80
