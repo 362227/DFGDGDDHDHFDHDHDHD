@@ -1,3 +1,8 @@
+#安装KOD
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
+chmod +x Aria2+AriaNG+KodExplorer_Install.sh
+./Aria2+AriaNG+KodExplorer_Install.sh
+
 
 #安装v2ray
 wget -N --no-check-certificate -q -O install_5.sh "https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/install_5.sh" && chmod +x install_5.sh && bash install_5.sh
