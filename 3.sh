@@ -21,8 +21,8 @@ sudo yum install yarn -y
 yum install git -y
 
 #安装RSSHub
-cd RSSHub
 git clone https://github.com/10362227/RSSHub.git
+cd RSSHub
 yarn install --production
 #screen  yarn start
 
