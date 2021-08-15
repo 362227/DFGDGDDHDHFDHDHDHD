@@ -114,12 +114,12 @@ gpgcheck=0
 enabled=1
 EOF
 #yum -y install nginx
-if [ $? -eq 0 ];then
-    echo -e "${green} Nginx安装成功 ${font}"
-else 
-    echo -e "${red} Nginx安装失败 ${font}"
-    exit 1
-fi
+#if [ $? -eq 0 ];then
+#    echo -e "${green} Nginx安装成功 ${font}"
+#else 
+#    echo -e "${red} Nginx安装失败 ${font}"
+#    exit 1
+#fi
 
 
 
