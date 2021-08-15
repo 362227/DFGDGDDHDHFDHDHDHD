@@ -103,22 +103,6 @@ else
     exit 1
 fi
 
-#Install Nginx
-touch /etc/yum.repos.d/nginx.repo
-cat > /etc/yum.repos.d/nginx.repo <<EOF
-[nginx]
-name=nginx repo
-baseurl=http://nginx.org/packages/centos/7/\$basearch/
-gpgcheck=0
-enabled=1
-EOF
-yum -y install nginx
-if [ $? -eq 0 ];then
-    echo -e "${green} Nginx安装成功 ${font}"
-else 
-    echo -e "${red} Nginx安装失败 ${font}"
-    exit 1
-fi
 
 #Install PHP7.2
 rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
@@ -325,8 +309,8 @@ else
 fi
 
 # Create Nginx MasterConfigFile
-touch /etc/nginx/conf.d/ariang.conf
-cat > /etc/nginx/conf.d/ariang.conf <<EOF
+touch /etc/nginx/conf/conf.d/ariang.conf
+cat > /etc/nginx/conf/conf.d/ariang.conf <<EOF
 server {
     listen       11585;
     server_name  ${HostIP};
@@ -342,8 +326,8 @@ server {
 EOF
 
 # Create KodExplorer MasterConfigFile
-touch /etc/nginx/conf.d/kodexplorer.conf
-cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
+touch /etc/nginx/conf/conf.d/kodexplorer.conf
+cat > /etc/nginx/conf/conf.d/kodexplorer.conf <<EOF
 server {
     listen       11586;
     server_name  ${HostIP};
@@ -411,6 +395,4 @@ echo "# Default Aria2 RPC Password: lala.im                       #"
 echo "# Change Aria2 RPC Password: /etc/aria2/aria2.conf          #"
 echo "#############################################################"
 echo
-×
-拖拽到此处
-图片将完成下载
+
