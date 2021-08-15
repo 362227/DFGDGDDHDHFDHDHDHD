@@ -19,7 +19,7 @@ yum install git -y
 cd RSSHub
 git clone https://github.com/10362227/RSSHub.git
 yarn install --production
-screen  yarn start
+#screen  yarn start
 
 cd /var/spool/cron
 touch hello.sh
@@ -412,3 +412,5 @@ chmod -R 777 /usr/share/nginx/html
 yum install fuse -y
 curl https://rclone.org/install.sh | sudo bash
 rclone config
+
+
