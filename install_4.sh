@@ -4,7 +4,6 @@ export PATH
 
 cd "$(
     cd "$(dirname "$0")" || exit
-
 )" || exit
 #====================================================
 #	System Request:Debian 9+/Ubuntu 18.04+/Centos 7+
