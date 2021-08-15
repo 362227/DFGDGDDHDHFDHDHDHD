@@ -400,7 +400,7 @@ nginx_install() {
         --with-cc-opt='-O3' \
         --with-ld-opt="-ljemalloc" \
         --with-openssl=../openssl-"$openssl_version"
-        --add-module=../nginx-rtmp-module
+
 
     judge "编译检查"
     make -j "${THREAD}" && make install
