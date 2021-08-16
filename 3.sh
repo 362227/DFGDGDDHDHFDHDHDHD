@@ -171,10 +171,10 @@ iptables -X -t nat
 lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
 curl https://get.acme.sh | sh
 source ~/.bashrc
-acme.sh --issue --standalone -d 362227.top
-acme.sh --issue --standalone -d rsshub.362227.top
-acme.sh --issue --standalone -d transmission.362227.top
-acme.sh --issue --standalone -d ariang.362227.top
+#acme.sh --issue --standalone -d 362227.top
+#acme.sh --issue --standalone -d rsshub.362227.top
+#acme.sh --issue --standalone -d transmission.362227.top
+#acme.sh --issue --standalone -d ariang.362227.top
 
 #重新生成证书覆盖v2ray （换主机用，记得先修改DNS）
 #rm -rf /root/.acme.sh/a.362227.top_ecc
