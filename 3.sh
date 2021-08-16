@@ -158,14 +158,7 @@ iptables -X
 iptables -X -t nat
 
 #安装证书HTTPS
-#先关闭80端口
-lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
-curl https://get.acme.sh | sh
-source ~/.bashrc
-acme.sh --issue --standalone -d 362227.top
-acme.sh --issue --standalone -d rsshub.362227.top
-acme.sh --issue --standalone -d transmission.362227.top
-acme.sh --issue --standalone -d ariang.362227.top
+
 
 
 
