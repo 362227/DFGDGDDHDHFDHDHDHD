@@ -201,6 +201,7 @@ server {
         fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
         include        fastcgi_params;
     }
+}
 EOF
 
 touch /etc/nginx/conf/conf.d/ariang.conf
