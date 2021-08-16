@@ -129,7 +129,7 @@ cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
 }
 EOF
 systemctl stop transmission-daemon
-
+systemctl start transmission-daemon
 
 # 安装FFMPEG
 cd ~
