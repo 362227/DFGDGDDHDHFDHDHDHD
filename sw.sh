@@ -1,153 +1,131 @@
-#安装rTorrent
-#!/bin/bash
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-export PATH
-#=================================================================#
-#   System Required: CentOS 7 X86_64                              #
-#   Description: rTorrent + ruTorrent Soft Install                #
-#   Author: LALA <QQ1062951199>                                   #
-#   Website: https://www.lala.im                                  #
-#=================================================================#
+#安装KOD
+#无nginx
+#wget https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
+wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
+chmod +x Aria2+AriaNG+KodExplorer_Install.sh
+./Aria2+AriaNG+KodExplorer_Install.sh
 
-clear
-echo
-echo "#############################################################"
-echo "# rTorrent + ruTorrent + FFMPEG Soft Install                #"
-echo "# Author: LALA <QQ1062951199>                               #"
-echo "# Website: https://www.lala.im                              #"
-echo "# System Required: CentOS 7 X86_64                          #"
-echo "#############################################################"
-echo
 
-# Color
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-font="\033[0m"
+#安装yarn
+curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo yum install nodejs -y
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+sudo yum install yarn -y
 
-# Install 0.9.6
-install_0.9.6(){
-# HostIP input
-read -p "输入你的主机公网IP地址:" HostIP
+#安装git
+yum install git -y
 
-# Disable SELinux
-disable_selinux(){
-    if [ -s /etc/selinux/config ] && grep 'SELINUX=enforcing' /etc/selinux/config; then
-        sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-        setenforce 0
-    fi
-}
+#安装RSSHub
+git clone https://github.com/10362227/RSSHub.git
+cd RSSHub
+yarn install --production
+#screen  yarn start
 
-# Stop SElinux
-disable_selinux
-
-# Disable Firewalld
-systemctl stop firewalld.service
-systemctl disable firewalld.service
-
-# Update System
-yum -y update
-if [ $? -eq 0 ];then
-    echo -e "${green} 系统更新完成 ${font}"
-else 
-    echo -e "${red} 系统更新失败 ${font}"
-    exit 1
-fi
-
-# Install Required
-cd ~
-yum -y install wget
-if [ $? -eq 0 ];then
-    echo -e "${green} Wget安装成功 ${font}"
-else 
-    echo -e "${red} Wget安装失败 ${font}"
-    exit 1
-fi
-yum -y install git
-if [ $? -eq 0 ];then
-    echo -e "${green} Git安装成功 ${font}"
-else 
-    echo -e "${red} Git安装失败 ${font}"
-    exit 1
-fi
-yum -y install screen
-if [ $? -eq 0 ];then
-    echo -e "${green} Screen安装成功 ${font}"
-else 
-    echo -e "${red} Screen安装失败 ${font}"
-    exit 1
-fi
-yum -y install epel-release
-if [ $? -eq 0 ];then
-    echo -e "${green} EPEL源安装成功 ${font}"
-else 
-    echo -e "${red} EPEL源安装失败 ${font}"
-    exit 1
-fi
-yum -y install openssl-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Openssl-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Openssl-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y groupinstall "Development Tools"
-if [ $? -eq 0 ];then
-    echo -e "${green} 开发工具包安装成功 ${font}"
-else 
-    echo -e "${red} 开发工具包安装失败 ${font}"
-    exit 1
-fi
-yum -y install ncurses-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Ncurses-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Ncurses-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y install xmlrpc-c-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Xmlrpc-C-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Xmlrpc-C-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y install mediainfo
-if [ $? -eq 0 ];then
-    echo -e "${green} Mediainfo安装成功 ${font}"
-else 
-    echo -e "${red} Mediainfo安装失败 ${font}"
-    exit 1
-fi
-
-#Install Nginx
-touch /etc/yum.repos.d/nginx.repo
-cat > /etc/yum.repos.d/nginx.repo <<EOF
-[nginx]
-name=nginx repo
-baseurl=http://nginx.org/packages/centos/7/\$basearch/
-gpgcheck=0
-enabled=1
+cd /var/spool/cron
+touch hello.sh
+cat > /var/spool/cron/hello.sh <<EOF
+chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 EOF
-yum -y install nginx
-if [ $? -eq 0 ];then
-    echo -e "${green} Nginx安装成功 ${font}"
-else 
-    echo -e "${red} Nginx安装失败 ${font}"
-    exit 1
-fi
+cat > /var/spool/cron/root <<EOF
+46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+* * * * * /usr/share/nginx/kodexplorer/a.sh
+* * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
+*/10 * * * * /usr/share/nginx/kodexplorer/b.sh
+0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app /usr/share/nginx/kodexplorer
+0 4 * * * rclone move /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated
+* * * * * chmod -R 777 /usr
+#0 3 * * * screen rclone sync /usr/share/nginx/kodexplorer/ 10362227:backup --exclude "/{config,plugins,static,data,app}/" --local-no-check-updated
+EOF
 
-#Install PHP7.2
-rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-yum -y install php72w-fpm php72w-cli php72w-common php72w-gd php72w-mysqlnd php72w-odbc php72w-pdo php72w-pgsql php72w-xmlrpc php72w-xml php72w-mbstring php72w-opcache
-if [ $? -eq 0 ];then
-    echo -e "${green} PHP7.2安装成功 ${font}"
-else 
-    echo -e "${red} PHP7.2安装失败 ${font}"
-    exit 1
-fi
 
-# Install FFMPEG
+
+#1.安装transmission 
+wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh && bash transmission-centos.sh
+wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate && bash install-tr-control-cn.sh
+##（注：如要更新新版，执行此命令即可）
+##开机启动：
+chkconfig transmission-daemon on
+
+#修改密码transmission
+##停止
+systemctl stop transmission-daemon
+
+
+cat > /var/lib/transmission/.config/transmission-daemon/settings.json <<EOF
+{
+    "alt-speed-down": 50,
+    "alt-speed-enabled": false,
+    "alt-speed-time-begin": 540,
+    "alt-speed-time-day": 127,
+    "alt-speed-time-enabled": false,
+    "alt-speed-time-end": 1020,
+    "alt-speed-up": 50,
+    "bind-address-ipv4": "0.0.0.0",
+    "bind-address-ipv6": "::",
+    "blocklist-enabled": false,
+    "blocklist-url": "http://www.example.com/blocklist",
+    "cache-size-mb": 4,
+    "dht-enabled": true,
+    "download-dir": "/usr/share/nginx/kodexplorer/data/User/admin/home/",
+    "download-queue-enabled": true,
+    "download-queue-size": 5,
+    "encryption": 1,
+    "idle-seeding-limit": 500,
+    "idle-seeding-limit-enabled": false,
+    "incomplete-dir": "/var/lib/transmission/Downloads",
+    "incomplete-dir-enabled": false,
+    "lpd-enabled": false,
+    "message-level": 1,
+    "peer-congestion-algorithm": "",
+    "peer-id-ttl-hours": 6,
+    "peer-limit-global": 2000,
+    "peer-limit-per-torrent": 2000,
+    "peer-port": 51413,
+    "peer-port-random-high": 65535,
+    "peer-port-random-low": 49152,
+    "peer-port-random-on-start": false,
+    "peer-socket-tos": "default",
+    "pex-enabled": true,
+    "port-forwarding-enabled": true,
+    "preallocation": 1,
+    "prefetch-enabled": true,
+    "queue-stalled-enabled": true,
+    "queue-stalled-minutes": 30,
+    "ratio-limit": 2,
+    "ratio-limit-enabled": false,
+    "rename-partial-files": true,
+    "rpc-authentication-required": true,
+    "rpc-bind-address": "0.0.0.0",
+    "rpc-enabled": true,
+    "rpc-host-whitelist": "",
+    "rpc-host-whitelist-enabled": true,
+    "rpc-password": "19920203",
+    "rpc-port": 9091,
+    "rpc-url": "/transmission/",
+    "rpc-username": "",
+    "rpc-whitelist": "127.0.0.1",
+    "rpc-whitelist-enabled": false,
+    "scrape-paused-torrents-enabled": true,
+    "script-torrent-done-enabled": false,
+    "script-torrent-done-filename": "",
+    "seed-queue-enabled": false,
+    "seed-queue-size": 10,
+    "speed-limit-down": 100,
+    "speed-limit-down-enabled": false,
+    "speed-limit-up": 100,
+    "speed-limit-up-enabled": false,
+    "start-added-torrents": true,
+    "trash-original-torrent-files": false,
+    "umask": 18,
+    "upload-slots-per-torrent": 14,
+    "utp-enabled": true
+}
+EOF
+systemctl stop transmission-daemon
+systemctl start transmission-daemon
+
+# 安装FFMPEG
 cd ~
 wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
 tar -xJf ffmpeg-4.0.3-64bit-static.tar.xz
@@ -161,689 +139,6 @@ else
     echo -e "${red} FFMPEG安装失败 ${font}"
     exit 1
 fi
-
-# Install unrar
-cd ~
-wget --no-check-certificate https://www.rarlab.com/rar/rarlinux-x64-5.6.b2.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} Unrar下载成功 ${font}"
-else 
-    echo -e "${red} Unrar下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf rarlinux-x64-5.6.b2.tar.gz
-cd rar
-make
-if [ $? -eq 0 ];then
-    echo -e "${green} Unrar安装成功 ${font}"
-else 
-    echo -e "${red} Unrar安装失败 ${font}"
-    exit 1
-fi
-
-# Create Folder
-mkdir /opt/rtorrent
-mkdir /opt/rtorrent/download
-mkdir /opt/rtorrent/.session
-mkdir /opt/rtorrent/.watch
-
-# Setting Environmental
-echo "/usr/local/lib/" >> /etc/ld.so.conf
-ldconfig
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-
-# Install libtorrent
-cd ~
-wget http://rtorrent.net/downloads/libtorrent-0.13.6.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} libtorrent下载成功 ${font}"
-else 
-    echo -e "${red} libtorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf libtorrent-0.13.6.tar.gz
-cd libtorrent-0.13.6
-./configure
-make
-make install
-if [ $? -eq 0 ];then
-    echo -e "${green}libtorrent安装成功 ${font}"
-else 
-    echo -e "${red}libtorrent安装失败 ${font}"
-    exit 1
-fi
-
-# Install rTorrent
-cd ~
-wget http://rtorrent.net/downloads/rtorrent-0.9.6.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} rTorrent下载成功 ${font}"
-else 
-    echo -e "${red} rTorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf rtorrent-0.9.6.tar.gz
-cd rtorrent-0.9.6
-./configure --with-xmlrpc-c
-make
-make install
-if [ $? -eq 0 ];then
-    echo -e "${green} rTorrent安装成功 ${font}"
-else 
-    echo -e "${red} rTorrent安装失败 ${font}"
-    exit 1
-fi
-
-# Create rTorrent Config File
-cd ~
-touch .rtorrent.rc
-cat > .rtorrent.rc <<EOF
-# This is the rtorrent configuration file installed by LALA script - https://lala.im
-# This file is installed to ~/.rtorrent.rc
-# Enable/modify the options as needed, uncomment the options you wish to enable.
-# This configuration will work well with most systems, but optimal settings are dependant on specific server setup
-directory ="/opt/rtorrent/download/"
-session ="/opt/rtorrent/.session"
-schedule = watch_directory,5,5,load_start="/opt/rtorrent/.watch/*.torrent"
-### BitTorrent
-# Global upload and download rate in KiB, `0` for unlimited
-throttle.global_down.max_rate.set = 0
-throttle.global_up.max_rate.set = 0
-# Maximum number of simultaneous downloads and uploads slots
-throttle.max_downloads.global.set = 150
-throttle.max_uploads.global.set = 150
-# Maximum and minimum number of peers to connect to per torrent while downloading
-throttle.min_peers.normal.set = 50
-throttle.max_peers.normal.set = 51121
-# Same as above but for seeding completed torrents (seeds per torrent)
-throttle.min_peers.seed.set = 50
-throttle.max_peers.seed.set = 51121
-# Tuning
-peer_exchange = yes
-### Networking
-network.port_range.set = 51001-51250
-network.port_random.set = yes
-dht.mode.set = auto
-protocol.pex.set = no
-trackers.use_udp.set = yes
-# network.scgi.open_port = localhost:5000
-network.scgi.open_port = 127.0.0.1:5000
-network.http.ssl_verify_peer.set = 0
-protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
-network.max_open_files.set = 65000
-network.max_open_sockets.set = 4096
-network.http.max_open.set = 4096
-network.send_buffer.size.set = 256M
-network.receive_buffer.size.set = 256M
-### Memory Settings
-pieces.hash.on_completion.set = no
-pieces.preload.type.set = 1
-pieces.memory.max.set = 2048M
-EOF
-
-# Download ruTorrent
-cd /usr/share/nginx
-wget --no-check-certificate https://github.com/Novik/ruTorrent/archive/v3.8.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} ruTorrent下载成功 ${font}"
-else 
-    echo -e "${red} ruTorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf v3.8.tar.gz
-mv ruTorrent-3.8 rutorrent
-chown -R apache:apache /usr/share/nginx/rutorrent
-
-# Create ruToorent Password
-touch /etc/nginx/htpasswd
-echo "lala:\$apr1\$3mxsxTZU\$afw4DBFpuZq658moL5ZYO1" > /etc/nginx/htpasswd
-
-# Create Nginx Rewrite Folder and ConfigFile
-mkdir /etc/nginx/conf.d/rewrite
-touch /etc/nginx/conf.d/rewrite/rutorrent.conf
-cat > /etc/nginx/conf.d/rewrite/rutorrent.conf <<EOF
-location /RPC2 {
-  include scgi_params;
-  scgi_pass 127.0.0.1:5000;
-}
-EOF
-
-# Create Nginx MasterConfigFile
-touch /etc/nginx/conf.d/rtorrent.conf
-cat > /etc/nginx/conf.d/rtorrent.conf <<EOF
-server {
-    listen       12315;
-    server_name  ${HostIP};
-    #charset koi8-r;
-    #access_log  /var/log/nginx/host.access.log  main;
-    location / {
-        auth_basic "Your mother is biubiubiu";
-        auth_basic_user_file htpasswd;
-        root   /usr/share/nginx/rutorrent;
-        index  index.html index.htm index.php;
-        include /etc/nginx/conf.d/rewrite/rutorrent.conf;
-    }
-    location ~ \.php$ {
-        auth_basic "Your mother is biubiubiu";
-        auth_basic_user_file htpasswd;
-        root           /usr/share/nginx/rutorrent;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/rutorrent\$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-}
-EOF
-
-# Fix Bug is Curl Path
-cat > /usr/share/nginx/rutorrent/conf/config.php <<EOF
-<?php
-	// configuration parameters
-	// for snoopy client
-	@define('HTTP_USER_AGENT', 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0', true);
-	@define('HTTP_TIME_OUT', 30, true);	// in seconds
-	@define('HTTP_USE_GZIP', true, true);
-	\$httpIP = null;				// IP string. Or null for any.
-	@define('RPC_TIME_OUT', 5, true);	// in seconds
-	@define('LOG_RPC_CALLS', false, true);
-	@define('LOG_RPC_FAULTS', true, true);
-	// for php
-	@define('PHP_USE_GZIP', false, true);
-	@define('PHP_GZIP_LEVEL', 2, true);
-	\$schedule_rand = 10;			// rand for schedulers start, +0..X seconds
-	\$do_diagnostic = true;
-	\$log_file = '/tmp/errors.log';		// path to log file (comment or leave blank to disable logging)
-	\$saveUploadedTorrents = true;		// Save uploaded torrents to profile/torrents directory or not
-	\$overwriteUploadedTorrents = false;     // Overwrite existing uploaded torrents in profile/torrents directory or make unique name
-	\$topDirectory = '/';			// Upper available directory. Absolute path with trail slash.
-	\$forbidUserSettings = false;
-	\$scgi_port = 5000;
-	\$scgi_host = "127.0.0.1";
-	// For web->rtorrent link through unix domain socket 
-	// (scgi_local in rtorrent conf file), change variables 
-	// above to something like this:
-	//
-	// \$scgi_port = 0;
-	// \$scgi_host = "unix:///tmp/rpc.socket";
-	\$XMLRPCMountPoint = "/RPC2";		// DO NOT DELETE THIS LINE!!! DO NOT COMMENT THIS LINE!!!
-	\$pathToExternals = array(
-		"php" 	=> '',			// Something like /usr/bin/php. If empty, will be found in PATH.
-		"curl"	=> '/usr/bin/curl',			// Something like /usr/bin/curl. If empty, will be found in PATH.
-		"gzip"	=> '',			// Something like /usr/bin/gzip. If empty, will be found in PATH.
-		"id"	=> '',			// Something like /usr/bin/id. If empty, will be found in PATH.
-		"stat"	=> '',			// Something like /usr/bin/stat. If empty, will be found in PATH.
-	);
-	\$localhosts = array( 			// list of local interfaces
-		"127.0.0.1",
-		"localhost",
-	);
-	\$profilePath = '../share';		// Path to user profiles
-	\$profileMask = 0777;			// Mask for files and directory creation in user profiles.
-						// Both Webserver and rtorrent users must have read-write access to it.
-						// For example, if Webserver and rtorrent users are in the same group then the value may be 0770.
-	\$tempDirectory = null;			// Temp directory. Absolute path with trail slash. If null, then autodetect will be used.
-	\$canUseXSendFile = false;		// If true then use X-Sendfile feature if it exist
-	\$locale = "UTF8";
-EOF
-
-# Install 3rd ruTorrent Theme
-cd /usr/share/nginx/rutorrent/plugins/theme/themes
-git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git
-chown -R apache:apache ruTorrent-MaterialDesign
-git clone https://github.com/QuickBox/club-QuickBox.git
-chown -R apache:apache club-QuickBox
-
-# Fix PHP.ini Setting
-sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g" /etc/php.ini
-
-# Start Nginx Service
-systemctl restart nginx
-systemctl enable nginx
-
-# Start PHP Service
-systemctl start php-fpm
-systemctl enable php-fpm
-
-# Boot Auto Running rTorrent
-cd /etc/init.d
-wget --no-check-certificate https://raw.githubusercontent.com/kevin-cn/rotorrent-install-for-centos7/master/rtorrent
-chmod 755 rtorrent
-chkconfig --add rtorrent
-chkconfig rtorrent on
-
-# Start rTorrent
-/etc/init.d/rtorrent start
-
-echo
-echo "#############################################################"
-echo "# rTorrent + ruTorrent Installation Complete                #"
-echo "# ruTorrent WebSite: http://${HostIP}:12315                 #"
-echo "# WebSite Account Name: lala                                #"
-echo "# WebSite Password: lala.im-exciting                        #"
-echo "# Change Password: /etc/nginx/htpasswd                      #"
-echo "#############################################################"
-echo
-}
-
-install_0.9.7(){
-# HostIP input
-read -p "输入你的主机公网IP地址:" HostIP
-
-# Disable SELinux
-disable_selinux(){
-    if [ -s /etc/selinux/config ] && grep 'SELINUX=enforcing' /etc/selinux/config; then
-        sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-        setenforce 0
-    fi
-}
-
-# Stop SElinux
-disable_selinux
-
-# Disable Firewalld
-systemctl stop firewalld.service
-systemctl disable firewalld.service
-
-# Update System
-yum -y update
-if [ $? -eq 0 ];then
-    echo -e "${green} 系统更新完成 ${font}"
-else 
-    echo -e "${red} 系统更新失败 ${font}"
-    exit 1
-fi
-
-# Install Required
-cd ~
-yum -y install wget
-if [ $? -eq 0 ];then
-    echo -e "${green} Wget安装成功 ${font}"
-else 
-    echo -e "${red} Wget安装失败 ${font}"
-    exit 1
-fi
-yum -y install git
-if [ $? -eq 0 ];then
-    echo -e "${green} Git安装成功 ${font}"
-else 
-    echo -e "${red} Git安装失败 ${font}"
-    exit 1
-fi
-yum -y install screen
-if [ $? -eq 0 ];then
-    echo -e "${green} Screen安装成功 ${font}"
-else 
-    echo -e "${red} Screen安装失败 ${font}"
-    exit 1
-fi
-yum -y install epel-release
-if [ $? -eq 0 ];then
-    echo -e "${green} EPEL源安装成功 ${font}"
-else 
-    echo -e "${red} EPEL源安装失败 ${font}"
-    exit 1
-fi
-yum -y install openssl-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Openssl-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Openssl-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y groupinstall "Development Tools"
-if [ $? -eq 0 ];then
-    echo -e "${green} 开发工具包安装成功 ${font}"
-else 
-    echo -e "${red} 开发工具包安装失败 ${font}"
-    exit 1
-fi
-yum -y install ncurses-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Ncurses-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Ncurses-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y install xmlrpc-c-devel
-if [ $? -eq 0 ];then
-    echo -e "${green} Xmlrpc-C-Devel安装成功 ${font}"
-else 
-    echo -e "${red} Xmlrpc-C-Devel安装失败 ${font}"
-    exit 1
-fi
-yum -y install mediainfo
-if [ $? -eq 0 ];then
-    echo -e "${green} Mediainfo安装成功 ${font}"
-else 
-    echo -e "${red} Mediainfo安装失败 ${font}"
-    exit 1
-fi
-
-#Install Nginx
-touch /etc/yum.repos.d/nginx.repo
-cat > /etc/yum.repos.d/nginx.repo <<EOF
-[nginx]
-name=nginx repo
-baseurl=http://nginx.org/packages/centos/7/\$basearch/
-gpgcheck=0
-enabled=1
-EOF
-yum -y install nginx
-if [ $? -eq 0 ];then
-    echo -e "${green} Nginx安装成功 ${font}"
-else 
-    echo -e "${red} Nginx安装失败 ${font}"
-    exit 1
-fi
-
-#Install PHP7.2
-rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-yum -y install php72w-fpm php72w-cli php72w-common php72w-gd php72w-mysqlnd php72w-odbc php72w-pdo php72w-pgsql php72w-xmlrpc php72w-xml php72w-mbstring php72w-opcache
-if [ $? -eq 0 ];then
-    echo -e "${green} PHP7.2安装成功 ${font}"
-else 
-    echo -e "${red} PHP7.2安装失败 ${font}"
-    exit 1
-fi
-
-# Install FFMPEG
-cd ~
-wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
-tar -xJf ffmpeg-4.0.3-64bit-static.tar.xz
-cd ffmpeg-4.0.3-64bit-static
-cp ffmpeg /usr/bin/ffmpeg
-cd ~
-ffmpeg -version
-if [ $? -eq 0 ];then
-    echo -e "${green} FFMPEG安装成功 ${font}"
-else 
-    echo -e "${red} FFMPEG安装失败 ${font}"
-    exit 1
-fi
-
-# Install unrar
-cd ~
-wget --no-check-certificate https://www.rarlab.com/rar/rarlinux-x64-5.6.b2.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} Unrar下载成功 ${font}"
-else 
-    echo -e "${red} Unrar下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf rarlinux-x64-5.6.b2.tar.gz
-cd rar
-make
-if [ $? -eq 0 ];then
-    echo -e "${green} Unrar安装成功 ${font}"
-else 
-    echo -e "${red} Unrar安装失败 ${font}"
-    exit 1
-fi
-
-# Create Folder
-mkdir /opt/rtorrent
-mkdir /opt/rtorrent/download
-mkdir /opt/rtorrent/.session
-mkdir /opt/rtorrent/.watch
-
-# Setting Environmental
-echo "/usr/local/lib/" >> /etc/ld.so.conf
-ldconfig
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-
-# Install libtorrent
-cd ~
-wget http://rtorrent.net/downloads/libtorrent-0.13.7.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} libtorrent下载成功 ${font}"
-else 
-    echo -e "${red} libtorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf libtorrent-0.13.7.tar.gz
-cd libtorrent-0.13.7
-./autogen.sh
-./configure
-make
-make install
-if [ $? -eq 0 ];then
-    echo -e "${green}libtorrent安装成功 ${font}"
-else 
-    echo -e "${red}libtorrent安装失败 ${font}"
-    exit 1
-fi
-
-# Install rTorrent
-cd ~
-wget http://rtorrent.net/downloads/rtorrent-0.9.7.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} rTorrent下载成功 ${font}"
-else 
-    echo -e "${red} rTorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf rtorrent-0.9.7.tar.gz
-cd rtorrent-0.9.7
-./configure --with-xmlrpc-c
-make
-make install
-if [ $? -eq 0 ];then
-    echo -e "${green} rTorrent安装成功 ${font}"
-else 
-    echo -e "${red} rTorrent安装失败 ${font}"
-    exit 1
-fi
-
-# Create rTorrent Config File
-cd ~
-touch .rtorrent.rc
-cat > .rtorrent.rc <<EOF
-# This is the rtorrent configuration file installed by LALA script - https://lala.im
-# This file is installed to ~/.rtorrent.rc
-# Enable/modify the options as needed, uncomment the options you wish to enable.
-# This configuration will work well with most systems, but optimal settings are dependant on specific server setup
-directory ="/opt/rtorrent/download/"
-session ="/opt/rtorrent/.session"
-schedule = watch_directory,5,5,load_start="/opt/rtorrent/.watch/*.torrent"
-### BitTorrent
-# Global upload and download rate in KiB, `0` for unlimited
-throttle.global_down.max_rate.set = 0
-throttle.global_up.max_rate.set = 0
-# Maximum number of simultaneous downloads and uploads slots
-throttle.max_downloads.global.set = 150
-throttle.max_uploads.global.set = 150
-# Maximum and minimum number of peers to connect to per torrent while downloading
-throttle.min_peers.normal.set = 50
-throttle.max_peers.normal.set = 51121
-# Same as above but for seeding completed torrents (seeds per torrent)
-throttle.min_peers.seed.set = 50
-throttle.max_peers.seed.set = 51121
-### Networking
-network.port_range.set = 51001-51250
-network.port_random.set = yes
-dht.mode.set = auto
-protocol.pex.set = no
-trackers.use_udp.set = yes
-# network.scgi.open_port = localhost:5000
-network.scgi.open_port = 127.0.0.1:5000
-network.http.ssl_verify_peer.set = 0
-protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
-network.max_open_files.set = 65000
-network.max_open_sockets.set = 4096
-network.http.max_open.set = 4096
-network.send_buffer.size.set = 256M
-network.receive_buffer.size.set = 256M
-### Memory Settings
-pieces.hash.on_completion.set = no
-pieces.preload.type.set = 1
-pieces.memory.max.set = 2048M
-EOF
-
-# Download ruTorrent
-cd /usr/share/nginx
-wget --no-check-certificate https://github.com/Novik/ruTorrent/archive/v3.8.tar.gz
-if [ $? -eq 0 ];then
-    echo -e "${green} ruTorrent下载成功 ${font}"
-else 
-    echo -e "${red} ruTorrent下载失败 ${font}"
-    exit 1
-fi
-tar -xzvf v3.8.tar.gz
-mv ruTorrent-3.8 rutorrent
-chown -R apache:apache /usr/share/nginx/rutorrent
-
-# Create ruToorent Password
-touch /etc/nginx/htpasswd
-echo "lala:\$apr1\$3mxsxTZU\$afw4DBFpuZq658moL5ZYO1" > /etc/nginx/htpasswd
-
-# Create Nginx Rewrite Folder and ConfigFile
-mkdir /etc/nginx/conf.d/rewrite
-touch /etc/nginx/conf.d/rewrite/rutorrent.conf
-cat > /etc/nginx/conf.d/rewrite/rutorrent.conf <<EOF
-location /RPC2 {
-  include scgi_params;
-  scgi_pass 127.0.0.1:5000;
-}
-EOF
-
-# Create Nginx MasterConfigFile
-touch /etc/nginx/conf.d/rtorrent.conf
-cat > /etc/nginx/conf.d/rtorrent.conf <<EOF
-server {
-    listen       12315;
-    server_name  ${HostIP};
-    #charset koi8-r;
-    #access_log  /var/log/nginx/host.access.log  main;
-    location / {
-        auth_basic "Your mother is biubiubiu";
-        auth_basic_user_file htpasswd;
-        root   /usr/share/nginx/rutorrent;
-        index  index.html index.htm index.php;
-        include /etc/nginx/conf.d/rewrite/rutorrent.conf;
-    }
-    location ~ \.php$ {
-        auth_basic "Your mother is biubiubiu";
-        auth_basic_user_file htpasswd;
-        root           /usr/share/nginx/rutorrent;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/rutorrent\$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-}
-EOF
-
-# Fix Bug is Curl Path
-cat > /usr/share/nginx/rutorrent/conf/config.php <<EOF
-<?php
-	// configuration parameters
-	// for snoopy client
-	@define('HTTP_USER_AGENT', 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0', true);
-	@define('HTTP_TIME_OUT', 30, true);	// in seconds
-	@define('HTTP_USE_GZIP', true, true);
-	\$httpIP = null;				// IP string. Or null for any.
-	@define('RPC_TIME_OUT', 5, true);	// in seconds
-	@define('LOG_RPC_CALLS', false, true);
-	@define('LOG_RPC_FAULTS', true, true);
-	// for php
-	@define('PHP_USE_GZIP', false, true);
-	@define('PHP_GZIP_LEVEL', 2, true);
-	\$schedule_rand = 10;			// rand for schedulers start, +0..X seconds
-	\$do_diagnostic = true;
-	\$log_file = '/tmp/errors.log';		// path to log file (comment or leave blank to disable logging)
-	\$saveUploadedTorrents = true;		// Save uploaded torrents to profile/torrents directory or not
-	\$overwriteUploadedTorrents = false;     // Overwrite existing uploaded torrents in profile/torrents directory or make unique name
-	\$topDirectory = '/';			// Upper available directory. Absolute path with trail slash.
-	\$forbidUserSettings = false;
-	\$scgi_port = 5000;
-	\$scgi_host = "127.0.0.1";
-	// For web->rtorrent link through unix domain socket 
-	// (scgi_local in rtorrent conf file), change variables 
-	// above to something like this:
-	//
-	// \$scgi_port = 0;
-	// \$scgi_host = "unix:///tmp/rpc.socket";
-	\$XMLRPCMountPoint = "/RPC2";		// DO NOT DELETE THIS LINE!!! DO NOT COMMENT THIS LINE!!!
-	\$pathToExternals = array(
-		"php" 	=> '',			// Something like /usr/bin/php. If empty, will be found in PATH.
-		"curl"	=> '/usr/bin/curl',			// Something like /usr/bin/curl. If empty, will be found in PATH.
-		"gzip"	=> '',			// Something like /usr/bin/gzip. If empty, will be found in PATH.
-		"id"	=> '',			// Something like /usr/bin/id. If empty, will be found in PATH.
-		"stat"	=> '',			// Something like /usr/bin/stat. If empty, will be found in PATH.
-	);
-	\$localhosts = array( 			// list of local interfaces
-		"127.0.0.1",
-		"localhost",
-	);
-	\$profilePath = '../share';		// Path to user profiles
-	\$profileMask = 0777;			// Mask for files and directory creation in user profiles.
-						// Both Webserver and rtorrent users must have read-write access to it.
-						// For example, if Webserver and rtorrent users are in the same group then the value may be 0770.
-	\$tempDirectory = null;			// Temp directory. Absolute path with trail slash. If null, then autodetect will be used.
-	\$canUseXSendFile = false;		// If true then use X-Sendfile feature if it exist
-	\$locale = "UTF8";
-EOF
-
-# Install 3rd ruTorrent Theme
-cd /usr/share/nginx/rutorrent/plugins/theme/themes
-git clone https://github.com/Phlooo/ruTorrent-MaterialDesign.git
-chown -R apache:apache ruTorrent-MaterialDesign
-git clone https://github.com/QuickBox/club-QuickBox.git
-chown -R apache:apache club-QuickBox
-
-# Fix PHP.ini Setting
-sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g" /etc/php.ini
-
-# Start Nginx Service
-systemctl restart nginx
-systemctl enable nginx
-
-# Start PHP Service
-systemctl start php-fpm
-systemctl enable php-fpm
-
-# Boot Auto Running rTorrent
-cd /etc/init.d
-wget --no-check-certificate https://raw.githubusercontent.com/kevin-cn/rotorrent-install-for-centos7/master/rtorrent
-chmod 755 rtorrent
-chkconfig --add rtorrent
-chkconfig rtorrent on
-
-# Start rTorrent
-/etc/init.d/rtorrent start
-
-echo
-echo "#############################################################"
-echo "# rTorrent + ruTorrent Installation Complete                #"
-echo "# ruTorrent WebSite: http://${HostIP}:12315                 #"
-echo "# WebSite Account Name: lala                                #"
-echo "# WebSite Password: lala.im-exciting                        #"
-echo "# Change Password: /etc/nginx/htpasswd                      #"
-echo "#############################################################"
-echo
-}
-
-# 开始菜单设置
-start_menu(){
-	read -p "请输入数字(1或2)，1安装rTorrent0.9.6，2安装rTorrent0.9.7:" num
-	case "$num" in
-		1)
-		install_0.9.6
-		;;
-		2)
-		install_0.9.7
-		;;
-	esac
-}
-
-# 运行开始菜单
-start_menu
-
-mkdir /usr/share/nginx/html/download
-
-wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/default.conf -O "/etc/nginx/conf.d/default.conf"
-
-service nginx restart
 
 
 #安装mediainfo
@@ -853,7 +148,117 @@ yum -y install mediainfo
 wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 chmod a+rx /usr/local/bin/youtube-dl 
 
-#安装SSR（系统支持：CentOS，Debian，Ubuntu）
-wget https://raw.githubusercontent.com/\
-ToyoDAdoubi/doubi/master/ssr.sh
-chmod +x ssr.sh && bash ssr.sh
+#安装SSR
+wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+chmod +x shadowsocksR.sh
+./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+
+#安装Pip： 
+yum -y install python-pip 
+
+iptables -F
+iptables -F -t nat
+iptables -X
+iptables -X -t nat
+
+#安装证书HTTPS
+#先关闭80端口
+lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
+curl https://get.acme.sh | sh
+source ~/.bashrc
+#acme.sh --issue --standalone -d 362227.top
+#acme.sh --issue --standalone -d rsshub.362227.top
+#acme.sh --issue --standalone -d transmission.362227.top
+#acme.sh --issue --standalone -d ariang.362227.top
+
+#重新生成证书覆盖v2ray （换主机用，记得先修改DNS）
+#rm -rf /root/.acme.sh/a.362227.top_ecc
+#rename /root/.acme.sh/a.362227.top mv /root/.acme.sh/a.362227.top_ecc
+
+
+
+cat > /etc/nginx/conf.d/default.conf <<EOF
+server {
+    listen       8081;
+    server_name  localhost;
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+    #error_page  404              /404.html;
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+EOF
+
+cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
+server {
+    listen       80;
+    server_name  wwww.362227.top;
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+    location / {
+        root   /usr/share/nginx/kodexplorer;
+        index  index.html index.htm index.php;
+    }
+    location ~ \.php$ {
+        root           /usr/share/nginx/kodexplorer;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+}
+EOF
+
+
+#重启nginx
+sudo systemctl restart nginx
+
+
+#安装streamlink
+pip install --upgrade streamlink
+yum install python3-pip -y
+pip3 install streamlink
+
+#安装psmisc
+yum -y install psmisc
+
+sudo pip install requests
+easy_install beautifulsoup4
+pip install beautifulsoup4
+easy_install PyRSS2Gen
+pip install PyRSS2Gen
+easy_install beautifulsoup
+pip install beautifulsoup
+
+#安装googledriver 
+#wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
+#chmod +x gdown.pl
+
+chmod -R 777 /usr/share/nginx/kodexplorer/
+chmod -R 777 /usr/share/nginx/
+
+
+#安装rclone
+yum install fuse -y
+curl https://rclone.org/install.sh | sudo bash
+rclone config
