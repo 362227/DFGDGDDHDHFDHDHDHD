@@ -207,6 +207,7 @@ server {
     #    fastcgi_index  index.php;
     #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
     #    include        fastcgi_params;
+    }
 EOF
 
 cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
