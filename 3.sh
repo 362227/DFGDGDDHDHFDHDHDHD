@@ -278,6 +278,9 @@ pip install beautifulsoup
 chmod -R 777 /usr/share/nginx/kodexplorer/
 chmod -R 777 /usr/share/nginx/
 
+#0.安装goflyway
+wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
+#http://kernel.ubuntu.com/~kernel-ppa/mainline/
 
 #安装rclone
 yum install fuse -y
