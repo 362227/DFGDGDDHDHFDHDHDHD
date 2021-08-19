@@ -176,8 +176,8 @@ source ~/.bashrc
 #rename /root/.acme.sh/a.362227.top mv /root/.acme.sh/a.362227.top_ecc
 
 
-
-
+#重启nginx
+systemctl restart nginx
 
 cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
 server {
