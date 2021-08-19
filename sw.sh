@@ -177,7 +177,7 @@ source ~/.bashrc
 
 
 #重启nginx
-systemctl restart nginx
+#systemctl restart nginx
 
 cat > /etc/nginx/conf.d/kodexplorer.conf <<EOF
 server {
@@ -200,7 +200,7 @@ server {
 EOF
 
 
-cat > /etc/nginx/conf/nginx.conf <<EOF
+#cat > /etc/nginx/conf/nginx.conf <<EOF
 
 user  root;
 worker_processes  3;
