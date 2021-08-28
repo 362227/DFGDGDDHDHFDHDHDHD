@@ -355,9 +355,9 @@ wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/m
 #http://kernel.ubuntu.com/~kernel-ppa/mainline/
 
 #重启nginx
-sudo systemctl restart nginx
+ systemctl restart nginx
 
 #安装rclone
 yum install fuse -y
-curl https://rclone.org/install.sh | sudo bash
+curl https://rclone.org/install.sh | bash
 rclone config
