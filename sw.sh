@@ -325,8 +325,6 @@ include conf.d/*.conf;
 EOF
 
 
-#重启nginx
-sudo systemctl restart nginx
 
 
 #安装streamlink
@@ -355,6 +353,9 @@ chmod -R 777 /usr/share/nginx/
 #0.安装goflyway
 wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
 #http://kernel.ubuntu.com/~kernel-ppa/mainline/
+
+#重启nginx
+sudo systemctl restart nginx
 
 #安装rclone
 yum install fuse -y
