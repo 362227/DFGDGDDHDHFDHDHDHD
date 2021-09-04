@@ -16,6 +16,9 @@ chmod +x Aria2+AriaNG+KodExplorerSW.sh
 #安装git
 yum install git -y
 
+#安装screen
+yum install screen -y
+
 #安装RSSHub
 git clone https://github.com/10362227/RSSHub.git
 cd RSSHub
