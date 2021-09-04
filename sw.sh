@@ -42,9 +42,9 @@ EOF
 
 #1.安装transmission 
 #wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh && bash transmission-centos.sh
-curl https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh --output transmission-centos.sh
+curl -L https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh --output transmission-centos.sh
 #wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate && bash install-tr-control-cn.sh
-curl https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --output install-tr-control-cn.sh && bash install-tr-control-cn.sh
+curl -L https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --output install-tr-control-cn.sh && bash install-tr-control-cn.sh
 ##（注：如要更新新版，执行此命令即可）
 ##开机启动：
 chkconfig transmission-daemon on
@@ -130,7 +130,7 @@ systemctl start transmission-daemon
 # 安装FFMPEG
 cd ~
 #wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
-curl https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz --output ffmpeg-4.0.3-64bit-static.tar.xz
+curl -L https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz --output ffmpeg-4.0.3-64bit-static.tar.xz
 tar -xJf ffmpeg-4.0.3-64bit-static.tar.xz
 cd ffmpeg-4.0.3-64bit-static
 cp ffmpeg /usr/bin/ffmpeg
@@ -149,11 +149,12 @@ yum -y install mediainfo
 
 #安装youtube-dl
 wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+curl -L https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh --output shadowsocksR.sh
 chmod a+rx /usr/local/bin/youtube-dl 
 
 #安装SSR
-wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-curl https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh --output shadowsocksR.sh
+#wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+curl -L https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh --output shadowsocksR.sh
 chmod +x shadowsocksR.sh
 ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
