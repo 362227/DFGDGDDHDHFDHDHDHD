@@ -142,7 +142,8 @@ systemctl enable php-fpm
 
 # Download Aria2 source and Install
 cd
-wget  https://github.com/aria2/aria2/releases/download/release-1.34.0/aria2-1.34.0.tar.gz
+#wget  https://github.com/aria2/aria2/releases/download/release-1.34.0/aria2-1.34.0.tar.gz
+curl https://github.com/aria2/aria2/releases/download/release-1.34.0/aria2-1.34.0.tar.gz  --output aria2-1.34.0.tar.gz
 if [ $? -eq 0 ];then
     echo -e "${green} Aria2源码下载成功 ${font}"
 else 
@@ -292,7 +293,8 @@ EOF
 
 # Download AriaNG
 mkdir -p /usr/share/nginx/ariang && cd /usr/share/nginx/ariang
-wget https://github.com/mayswind/AriaNg/releases/download/0.5.0/AriaNg-0.5.0.zip
+#wget https://github.com/mayswind/AriaNg/releases/download/0.5.0/AriaNg-0.5.0.zip
+curl https://github.com/mayswind/AriaNg/releases/download/0.5.0/AriaNg-0.5.0.zip  --output AriaNg-0.5.0.zip
 if [ $? -eq 0 ];then
     echo -e "${green} AriaNG下载成功 ${font}"
 else 
@@ -309,7 +311,8 @@ fi
 
 # Download Kodexplorer
 mkdir -p /usr/share/nginx/kodexplorer && cd /usr/share/nginx/kodexplorer
-wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/kodexplorer4.40.zip
+#wget https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/kodexplorer4.40.zip
+curl https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/kodexplorer4.40.zip  --output kodexplorer4.40.zip
 if [ $? -eq 0 ];then
     echo -e "${green} Kodexplorer下载成功 ${font}"
 else 
