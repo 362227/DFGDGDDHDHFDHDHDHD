@@ -7,11 +7,11 @@ chmod +x Aria2+AriaNG+KodExplorerSW.sh
 
 
 #安装yarn
-curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
-sudo yum install nodejs -y
-curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
-sudo yum install yarn -y
+#curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+#sudo yum install nodejs -y
+#curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+#sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+#sudo yum install yarn -y
 
 #安装git
 yum install git -y
