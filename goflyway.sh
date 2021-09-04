@@ -686,6 +686,5 @@ case "$num" in
 	;;
 esac
 fi
-×
-拖拽到此处
-图片将通过Fatkun完成下载
+
+
