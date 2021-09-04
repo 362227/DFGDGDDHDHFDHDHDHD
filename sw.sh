@@ -1,7 +1,7 @@
 #安装KOD
 #无nginx
 #wget https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
-wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
+wget https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorerSW.sh
 chmod +x Aria2+AriaNG+KodExplorer_Install.sh
 ./Aria2+AriaNG+KodExplorer_Install.sh
 
