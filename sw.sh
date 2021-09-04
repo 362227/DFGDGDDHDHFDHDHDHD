@@ -42,7 +42,7 @@ EOF
 
 #1.安装transmission 
 #wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh && bash transmission-centos.sh
-curl -L https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh --output transmission-centos.sh
+curl -L https://raw.githubusercontent.com/91yun/91yuncode/master/transmission-centos.sh --output transmission-centos.sh && bash transmission-centos.sh
 #wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --no-check-certificate && bash install-tr-control-cn.sh
 curl -L https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh --output install-tr-control-cn.sh && bash install-tr-control-cn.sh
 ##（注：如要更新新版，执行此命令即可）
@@ -148,7 +148,7 @@ fi
 yum -y install mediainfo
 
 #安装youtube-dl
-wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+curl -L https://yt-dl.org/downloads/latest/youtube-dl --output /usr/local/bin/youtube-dl
 curl -L https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh --output shadowsocksR.sh
 chmod a+rx /usr/local/bin/youtube-dl 
 
@@ -207,7 +207,7 @@ chmod -R 777 /usr/share/nginx/kodexplorer/
 chmod -R 777 /usr/share/nginx/
 
 #0.安装goflyway
-wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
+curl -L  https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh --output goflyway.sh  && chmod +x goflyway.sh && bash goflyway.sh
 #http://kernel.ubuntu.com/~kernel-ppa/mainline/
 
 
