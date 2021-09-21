@@ -270,6 +270,14 @@ pip install PyRSS2Gen
 easy_install beautifulsoup
 pip install beautifulsoup
 
+#安装proxychains
+git clone https://github.com/rofl0r/proxychains-ng.git
+cd proxychains-ng
+./configure --prefix=/usr --sysconfdir=/etc
+make && make install
+make install-config
+
+
 #安装googledriver 
 #wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
 #chmod +x gdown.pl
