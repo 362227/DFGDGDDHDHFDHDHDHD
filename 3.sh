@@ -276,6 +276,10 @@ cd proxychains-ng
 ./configure --prefix=/usr --sysconfdir=/etc
 make && make install
 make install-config
+cd .. && rm -rf proxychains-ng
+#vim /etc/proxychains.conf  //修改配置文件
+#socks5  127.0.0.1 1080  //ip和port改成自己的ip和端口
+#proxychains4 wget http://xxx.com/xxx.zip  
 
 
 #安装googledriver 
