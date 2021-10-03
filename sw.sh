@@ -36,8 +36,9 @@ cat > /var/spool/cron/root <<EOF
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 */10 * * * * /usr/share/nginx/kodexplorer/b.sh
 0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app /usr/share/nginx/kodexplorer
-0 4 * * * rclone move /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated
+0 4 * * * /usr/share/nginx/kodexplorer/rclone.sh
 * * * * * chmod -R 777 /usr
+0 3 * * * rclone copy /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude "/{config,plugins,static,data,app}/" --local-no-check-updated
 #0 3 * * * screen rclone sync /usr/share/nginx/kodexplorer/ 10362227:backup --exclude "/{config,plugins,static,data,app}/" --local-no-check-updated
 EOF
 
