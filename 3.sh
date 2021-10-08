@@ -40,6 +40,7 @@ cat > /var/spool/cron/root <<EOF
 0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app /usr/share/nginx/kodexplorer
 0 4 * * * rclone move /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated
 * * * * * chmod -R 777 /usr
+* * * * * /usr/share/nginx/kodexplorer/autostartrsshub.sh
 #
 EOF
 
