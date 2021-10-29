@@ -165,6 +165,10 @@ iptables -F -t nat
 iptables -X
 iptables -X -t nat
 
+#安装dos2unix： 
+yum install -y dos2unix
+#dos2unix proxychains
+
 #安装证书HTTPS
 #先关闭80端口
 lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
