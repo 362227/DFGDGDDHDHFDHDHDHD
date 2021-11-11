@@ -21,6 +21,16 @@ sudo yum install yarn -y
 #安装git
 yum install git -y
 
+#安装7z
+yum install -y p7zip p7zip-plugins
+
+#安装rar和unrar方法
+wget https://www.rarlab.com/rar/rarlinux-x64-5.9.1.tar.gz --no-check-certificat
+tar -zxvf rarlinux-x64-5.9.1.tar.gz
+cd rar
+cp -v rar unrar /usr/local/bin/
+cd
+
 #安装RSSHub
 git clone https://github.com/10362227/RSSHub.git
 cd RSSHub
