@@ -49,6 +49,7 @@ cat > /var/spool/cron/root <<EOF
 */20 * * * * /usr/share/nginx/kodexplorer/b.sh
 0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c --exclude igvid /usr/share/nginx/kodexplorer
 0 4 * * * rclone move /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated
+0 5 * * * rclone move /usr/share/nginx/kodexplorer/igvid/ ysf2020:vimeo --transfers=1 -P --stats-one-line --contimeout 5h --max-depth 1 --size-only --include "*.{mp4,flv}"  --min-age 600m -P 
 * * * * * chmod -R 777 /usr
 * * * * * /usr/share/nginx/kodexplorer/autostartrsshub.sh
 */49  * * * * /usr/share/nginx/kodexplorer/rss/ig.php
