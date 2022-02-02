@@ -184,6 +184,7 @@ yum install -y dos2unix
 #安装证书HTTPS
 #先关闭80端口
 lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9
+yum install lsof -y
 yum install install socat -y
 curl https://get.acme.sh | sh
 source ~/.bashrc
