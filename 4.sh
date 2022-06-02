@@ -2,6 +2,9 @@
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
 #旧方法 bash -c "$(curl -fsSL https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/V2ray.fun.sh)"
 
+#安装aria2c
+yum install -y aria2
+
 #安装php
 yum install php  -y
 yum install php php--mysqlnd  -y
