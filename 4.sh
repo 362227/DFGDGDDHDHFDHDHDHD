@@ -22,6 +22,9 @@ yum install php php-fpm  -y
 yum install php php-gd  -y
 yum install php php-cli  -y
 
+#如果运行缓慢，vi /etc/php-fpm.d/www.conf，设置大小 max_children 调大
+
+
 #安装KOD
 wget https://raw.githubusercontent.com/10362227/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
 #wget https://raw.githubusercontent.com/p1956/DFGDGDDHDHFDHDHDHD/master/Aria2%2BAriaNG%2BKodExplorer_Install.sh
