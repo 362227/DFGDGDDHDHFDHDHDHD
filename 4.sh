@@ -10,7 +10,7 @@ curl -L https://362227.top/aria2-crowncloud配置文件.conf > /etc/aria2/aria2.
 
 vi /etc/rc.d/rc.local
 最后一行添加
-/usr/bin/aria2c --conf-path="/home/gxc/aria22/aria2.conf" -D
+aria2c --conf-path=/etc/aria2/aria2.conf -D
 
 
 
