@@ -219,6 +219,7 @@ server {
     location ~ \.php$ {
         root           /usr/share/nginx/kodexplorer;
         fastcgi_pass   127.0.0.1:9000;
+        #fastcgi_pass  unix:/run/php-fpm/www.sock;     #运行命令php-fpm -R查看
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME  /usr/share/nginx/kodexplorer$fastcgi_script_name;
         include        fastcgi_params;
