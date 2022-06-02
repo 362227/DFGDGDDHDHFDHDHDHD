@@ -163,9 +163,9 @@ systemctl start transmission-daemon
 
 # 安装FFMPEG
 cd ~
-wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
-tar -xJf ffmpeg-4.0.3-64bit-static.tar.xz
-cd ffmpeg-4.0.3-64bit-static
+wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.1.4-amd64-static.tar.xz
+tar -xJf ffmpeg-4.1.4-amd64-static.tar.xz
+cd ffmpeg-4.1.4-amd64-static
 cp ffmpeg /usr/bin/ffmpeg
 cd ~
 ffmpeg -version
