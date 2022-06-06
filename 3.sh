@@ -31,6 +31,9 @@ cd rar
 cp -v rar unrar /usr/local/bin/
 cd
 
+#安装python3.6
+wget --no-check-certificate https://raw.githubusercontent.com/LunacyZeus/Python3.6-for-Centos7.0/master/install.sh && sh install.sh
+
 #安装RSSHub
 git clone https://github.com/10362227/RSSHub.git
 cd RSSHub
