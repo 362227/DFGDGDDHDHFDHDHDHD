@@ -12,7 +12,7 @@ wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.c
 
 #安装aria2c
 yum install -y aria2
-mkdir touch /etc/aria2/
+mkdir /etc/aria2/
 touch /etc/aria2/aria2.session
 touch /etc/aria2/aria2.conf
 curl -L https://362227.top/aria2-crowncloud配置文件.conf > /etc/aria2/aria2.conf
