@@ -185,6 +185,11 @@ tar -xvf ffmpeg-4.1.tar.gz
 cd /ffmpeg-4.1
 ./configure && make && make install
 
+# 安装AtomicParsley
+wget https://github.com/wez/atomicparsley/releases/download/20210715.151551.e7ad03a/AtomicParsleyLinux.zip
+unzip AtomicParsleyLinux.zip
+mv AtomicParsley /usr/bin
+chmod 777 /usr/bin/AtomicParsley
 
 #安装mediainfo
 yum -y install mediainfo
