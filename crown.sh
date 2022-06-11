@@ -26,6 +26,8 @@ aria2c --conf-path=/etc/aria2/aria2.conf -D
 #安装php
 yum install php  -y
 yum install php php--mysqlnd  -y
+dnf install php-xml
+dnf install php-pdo_sqlite
 dnf install php-mbstring
 dnf install php-curl
 yum install php php-fpm  -y
