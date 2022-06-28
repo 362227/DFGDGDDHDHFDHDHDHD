@@ -84,7 +84,7 @@ cat > /var/spool/cron/root <<EOF
 * * * * * chmod -R 777 /usr
 17 6 * * * swapoff -a
 22 6 * * * swapon -a
-tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static  --exclude=app  --exclude igvid --exclude *.mp4  --exclude *.mov --exclude *.mkv --exclude *.webm --exclude *.ts --exclude *.m2ts /usr/share/nginx/kodexplorer
+tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static  --exclude=app  --exclude igvid --exclude *.mp4  --exclude *.mov --exclude *.mkv --exclude *.webm --exclude *.ts --exclude *.m2ts --exclude *.vob --exclude *.mpg --exclude *.avi /usr/share/nginx/kodexplorer
 #
 EOF
 
