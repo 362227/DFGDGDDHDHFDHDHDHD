@@ -32,7 +32,7 @@ cp -v rar unrar /usr/local/bin/
 cd
 
 #安装python3.6
-wget --no-check-certificate https://raw.githubusercontent.com/LunacyZeus/Python3.6-for-Centos7.0/master/install.sh && sh install.sh
+#wget --no-check-certificate https://raw.githubusercontent.com/LunacyZeus/Python3.6-for-Centos7.0/master/install.sh && sh install.sh
 
 #安装RSSHub
 git clone https://github.com/10362227/RSSHub.git
@@ -148,18 +148,10 @@ systemctl start transmission-daemon
 
 # 安装FFMPEG
 cd ~
-wget --no-check-certificate https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-4.0.3-64bit-static.tar.xz
-tar -xJf ffmpeg-4.0.3-64bit-static.tar.xz
-cd ffmpeg-4.0.3-64bit-static
-cp ffmpeg /usr/bin/ffmpeg
-cd ~
-ffmpeg -version
-if [ $? -eq 0 ];then
-    echo -e "${green} FFMPEG安装成功 ${font}"
-else 
-    echo -e "${red} FFMPEG安装失败 ${font}"
-    exit 1
-fi
+wget http://www.ffmpeg.org/releases/ffmpeg-4.1.tar.gz
+tar -xvf ffmpeg-4.1.tar.gz
+cd /ffmpeg-4.1
+./configure && make && make install
 
 
 #安装mediainfo
@@ -168,6 +160,11 @@ yum -y install mediainfo
 #安装youtube-dl
 wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
 chmod a+rx /usr/local/bin/youtube-dl 
+
+
+#安装youtube-dl
+curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+chmod a+rx /usr/local/bin/yt-dlp
 
 #安装SSR
 wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh && chmod +x shadowsocksR.sh && ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
@@ -200,6 +197,63 @@ source ~/.bashrc
 #rm -rf /root/.acme.sh/a.362227.top_ecc
 #rename /root/.acme.sh/a.362227.top mv /root/.acme.sh/a.362227.top_ecc
 
+
+
+
+
+
+mkdir /usr/share/nginx/kodexplorer/data/User/admin/home/hls
+
+/etc/nginx/conf/nginx.conf
+
+
+#重启nginx
+sudo systemctl restart nginx
+
+
+#安装streamlink
+pip install --upgrade streamlink
+yum install python3-pip -y
+pip3 install streamlink
+
+#安装psmisc
+yum -y install psmisc
+
+sudo pip install requests
+easy_install beautifulsoup4
+pip install beautifulsoup4
+easy_install PyRSS2Gen
+pip install PyRSS2Gen
+easy_install beautifulsoup
+pip install beautifulsoup
+
+#安装proxychains
+git clone https://github.com/rofl0r/proxychains-ng.git
+cd proxychains-ng
+./configure --prefix=/usr --sysconfdir=/etc
+make && make install
+make install-config
+cd .. && rm -rf proxychains-ng
+#vim /etc/proxychains.conf  //修改配置文件
+#socks5  127.0.0.1 1080  //ip和port改成自己的ip和端口
+#proxychains4 wget http://xxx.com/xxx.zip  
+
+
+#安装googledriver 
+#wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
+#chmod +x gdown.pl
+
+chmod -R 777 /usr/share/nginx/kodexplorer/
+chmod -R 777 /usr/share/nginx/
+
+#0.安装goflyway
+wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
+#http://kernel.ubuntu.com/~kernel-ppa/mainline/
+
+#安装rclone
+yum install fuse -y
+curl https://rclone.org/install.sh | sudo bash
+rclone config
 
 
 touch /etc/nginx/conf/conf.d/kodexplorer.conf
@@ -263,60 +317,3 @@ server {
     }
 }
 EOF
-
-
-
-mkdir /usr/share/nginx/kodexplorer/data/User/admin/home/hls
-
-/etc/nginx/conf/nginx.conf
-
-
-#重启nginx
-sudo systemctl restart nginx
-
-
-#安装streamlink
-pip install --upgrade streamlink
-yum install python3-pip -y
-pip3 install streamlink
-
-#安装psmisc
-yum -y install psmisc
-
-sudo pip install requests
-easy_install beautifulsoup4
-pip install beautifulsoup4
-easy_install PyRSS2Gen
-pip install PyRSS2Gen
-easy_install beautifulsoup
-pip install beautifulsoup
-
-#安装proxychains
-git clone https://github.com/rofl0r/proxychains-ng.git
-cd proxychains-ng
-./configure --prefix=/usr --sysconfdir=/etc
-make && make install
-make install-config
-cd .. && rm -rf proxychains-ng
-#vim /etc/proxychains.conf  //修改配置文件
-#socks5  127.0.0.1 1080  //ip和port改成自己的ip和端口
-#proxychains4 wget http://xxx.com/xxx.zip  
-
-
-#安装googledriver 
-#wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
-#chmod +x gdown.pl
-
-chmod -R 777 /usr/share/nginx/kodexplorer/
-chmod -R 777 /usr/share/nginx/
-
-#0.安装goflyway
-wget -N --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
-#http://kernel.ubuntu.com/~kernel-ppa/mainline/
-
-#安装rclone
-yum install fuse -y
-curl https://rclone.org/install.sh | sudo bash
-rclone config
-
-
