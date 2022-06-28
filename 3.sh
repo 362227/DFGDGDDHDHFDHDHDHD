@@ -1,3 +1,19 @@
+yum install git -y
+yum install wget -y
+yum groupinstall "Development Tools" -y
+
+#安装python3.8
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+tar -zxvf Python-3.8.3.tgz
+mkdir /usr/local/python3
+cd Python-3.8.3
+./configure --prefix=/usr/local/python3
+make && make install
+ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
+
+
 #安装v2ray
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
 #wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
@@ -212,9 +228,8 @@ sudo systemctl restart nginx
 
 
 #安装streamlink
-pip install --upgrade streamlink
-yum install python3-pip -y
-pip3 install streamlink
+pip3 install --user --upgrade git+https://github.com/streamlink/streamlink.git
+cp /root/.local/bin/streamlink /usr/local/bin
 
 #安装psmisc
 yum -y install psmisc
@@ -240,8 +255,7 @@ cd .. && rm -rf proxychains-ng
 
 
 #安装googledriver 
-#wget https://raw.githubusercontent.com/circulosmeos/gdown.pl/master/gdown.pl
-#chmod +x gdown.pl
+pip3 install --upgrade --no-cache-dir gdown
 
 chmod -R 777 /usr/share/nginx/kodexplorer/
 chmod -R 777 /usr/share/nginx/
