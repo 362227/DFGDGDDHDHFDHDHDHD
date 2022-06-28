@@ -169,7 +169,7 @@ systemctl start transmission-daemon
 cd ~
 wget http://www.ffmpeg.org/releases/ffmpeg-4.1.tar.gz
 tar -xvf ffmpeg-4.1.tar.gz
-cd /ffmpeg-4.1
+cd ffmpeg-4.1
 ./configure && make && make install
 
 
