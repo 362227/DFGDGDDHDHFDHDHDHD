@@ -13,6 +13,9 @@ make && make install
 ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
 ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
 
+#安装streamlink
+pip3 install --user --upgrade git+https://github.com/streamlink/streamlink.git
+cp /root/.local/bin/streamlink /usr/local/bin
 
 #安装v2ray
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
@@ -186,7 +189,7 @@ chmod a+rx /usr/local/bin/yt-dlp
 wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh && chmod +x shadowsocksR.sh && ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 #安装Pip： 
-yum -y install python-pip 
+#yum -y install python-pip 
 
 iptables -F
 iptables -F -t nat
@@ -227,9 +230,6 @@ mkdir /usr/share/nginx/kodexplorer/data/User/admin/home/hls
 sudo systemctl restart nginx
 
 
-#安装streamlink
-pip3 install --user --upgrade git+https://github.com/streamlink/streamlink.git
-cp /root/.local/bin/streamlink /usr/local/bin
 
 #安装psmisc
 yum -y install psmisc
