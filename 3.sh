@@ -166,6 +166,7 @@ systemctl stop transmission-daemon
 systemctl start transmission-daemon
 
 # 安装FFMPEG
+yum install yasm -y
 cd ~
 wget http://www.ffmpeg.org/releases/ffmpeg-4.1.tar.gz
 tar -xvf ffmpeg-4.1.tar.gz
