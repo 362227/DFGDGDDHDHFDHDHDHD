@@ -169,13 +169,21 @@ EOF
 systemctl stop transmission-daemon
 systemctl start transmission-daemon
 
+# 安装lame
+curl https://udomain.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar -zxvf lame-3.99.5.tar.gz 
+cd lame-3.99.5
+./configure
+make
+make install
+
 # 安装FFMPEG
 yum install yasm -y
 cd ~
 wget http://www.ffmpeg.org/releases/ffmpeg-4.1.tar.gz
 tar -xvf ffmpeg-4.1.tar.gz
 cd ffmpeg-4.1
-./configure && make && make install
+./configure --enable-libmp3lame && make && make install
 
 
 #安装mediainfo
