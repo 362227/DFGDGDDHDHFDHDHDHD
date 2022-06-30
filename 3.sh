@@ -28,6 +28,11 @@ pip3 install --user --upgrade git+https://github.com/spotDL/spotify-downloader.g
 cp /root/.local/bin/spotdl /usr/local/bin
 
 
+#安装spotify-dl  可以下新西兰区歌曲
+pip3 install --user --upgrade git+https://github.com/SathyaBhat/spotify-dl.git
+cp /root/.local/bin/spotify_dl /usr/local/bin
+
+
 #安装v2ray
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
 #wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
