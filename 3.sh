@@ -21,6 +21,13 @@ cp /root/.local/bin/streamlink /usr/local/bin
 pip3 install --user --upgrade git+https://github.com/wkentaro/gdown.git
 cp /root/.local/bin/gdown /usr/local/bin
 
+#安装spotdl
+export SPOTIPY_CLIENT_ID='a145db3dcd564b9592dacf10649e4ed5'
+export SPOTIPY_CLIENT_SECRET='389614e1ec874f17b8c99511c7baa2f6'
+pip3 install --user --upgrade git+https://github.com/spotDL/spotify-downloader.git
+cp /root/.local/bin/spotdl /usr/local/bin
+
+
 #安装v2ray
 wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
 #wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
@@ -169,13 +176,6 @@ EOF
 systemctl stop transmission-daemon
 systemctl start transmission-daemon
 
-# 安装lame
-curl https://udomain.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
-tar -zxvf lame-3.99.5.tar.gz 
-cd lame-3.99.5
-./configure
-make
-make install
 
 # 安装FFMPEG
 yum install yasm -y
