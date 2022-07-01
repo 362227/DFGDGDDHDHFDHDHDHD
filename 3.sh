@@ -13,6 +13,8 @@ make && make install
 ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
 ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
 
+pip3 install wheel
+
 #安装streamlink
 pip3 install --user --upgrade git+https://github.com/streamlink/streamlink.git
 cp /root/.local/bin/streamlink /usr/local/bin
