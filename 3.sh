@@ -93,6 +93,7 @@ cat > /var/spool/cron/root <<EOF
 * * * * * chmod -R 777 /usr
 * * * * * /usr/share/nginx/kodexplorer/autostartrsshub.sh
 */49  * * * * /usr/share/nginx/kodexplorer/rss/ig.php
+*/3 * * * *  curl -L http://362227.top/rss/flaresolverr.php?url=https://sharemania.us/find-new/posts > /usr/share/nginx/kodexplorer/flaresolverr/flaresolverr.html
 #
 EOF
 
