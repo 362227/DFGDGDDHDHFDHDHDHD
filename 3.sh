@@ -88,10 +88,10 @@ cat > /var/spool/cron/root <<EOF
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 */20 * * * * /usr/share/nginx/kodexplorer/b.sh
 0 2 * * * cd /usr/share/nginx/kodexplorer/rss/huginn/ && php huginn备份.php
-0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=remote  --exclude=igvid  --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c /usr/share/nginx/kodexplorer
+0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=remote  --exclude=igvid  --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c --exclude backup.tar.gz --exclude *.mp4  --exclude *.mov --exclude *.mkv --exclude *.webm --exclude *.ts --exclude *.m2ts --exclude *.vob --exclude *.mpg --exclude *.avi --exclude *.MP4  --exclude *.MOV --exclude *.MKV --exclude *.WEBM --exclude *.TS --exclude *.M2TS --exclude *.VOB --exclude *.MPG --exclude *.AVI   /usr/share/nginx/kodexplorer
 0 4 * * * rclone copy /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated --config=/usr/share/nginx/kodexplorer/rclone.conf
 0 5 * * * rclone move /usr/share/nginx/kodexplorer/igvid/ ysf2020:vimeo --transfers=1 -P --stats-one-line --contimeout 5h --max-depth 1 --size-only --include "*.{mp4,flv}"  --min-age 600m -P
-* * * * * chmod -R 777 /usr
+0 7 * * *  find / -name *.log | xargs rm -rf
 * * * * * /usr/share/nginx/kodexplorer/autostartrsshub.sh
 */49  * * * * 暂停/usr/share/nginx/kodexplorer/rss/ig.php
 */3 * * * *  python3.8 /usr/share/nginx/kodexplorer/selenium/uc.py
