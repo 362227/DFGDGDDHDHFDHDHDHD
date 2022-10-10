@@ -10,28 +10,28 @@ mkdir /usr/local/python3
 cd Python-3.8.3
 ./configure --prefix=/usr/local/python3
 make && make install
-ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3
-ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3
+ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3.8
+ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3.8
 
 pip3 install wheel
 
 #安装streamlink
-pip3 install --user --upgrade git+https://github.com/streamlink/streamlink.git
+pip3.8 install --user --upgrade git+https://github.com/streamlink/streamlink.git
 cp /root/.local/bin/streamlink /usr/local/bin
 
 #安装gdown
-pip3 install --user --upgrade git+https://github.com/wkentaro/gdown.git
+pip3.8 install --user --upgrade git+https://github.com/wkentaro/gdown.git
 cp /root/.local/bin/gdown /usr/local/bin
 
 #安装spotdl
 export SPOTIPY_CLIENT_ID='a145db3dcd564b9592dacf10649e4ed5'
 export SPOTIPY_CLIENT_SECRET='389614e1ec874f17b8c99511c7baa2f6'
-pip3 install --user --upgrade git+https://github.com/spotDL/spotify-downloader.git
+pip3.8 install --user --upgrade git+https://github.com/spotDL/spotify-downloader.git
 cp /root/.local/bin/spotdl /usr/local/bin
 
 
 #安装spotify-dl  可以下新西兰区歌曲
-pip3 install --user --upgrade git+https://github.com/SathyaBhat/spotify-dl.git
+pip3.8 install --user --upgrade git+https://github.com/SathyaBhat/spotify-dl.git
 cp /root/.local/bin/spotify_dl /usr/local/bin
 
 
