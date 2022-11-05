@@ -85,7 +85,9 @@ cat > /var/spool/cron/root <<EOF
 * * * * * chmod -R 777 /usr
 17 6 * * * swapoff -a
 22 6 * * * swapon -a
-tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static  --exclude=app  --exclude igvid --exclude backup.tar.gz --exclude *.mp4  --exclude *.mov --exclude *.mkv --exclude *.webm --exclude *.ts --exclude *.m2ts --exclude *.vob --exclude *.mpg --exclude *.avi --exclude *.MP4  --exclude *.MOV --exclude *.MKV --exclude *.WEBM --exclude *.TS --exclude *.M2TS --exclude *.VOB --exclude *.MPG --exclude *.AVI /usr/share/nginx/kodexplorer
+50 8 * * * v2ray -config /usr/share/nginx/kodexplorer/tw.json && /usr/share/nginx/kodexplorer/remote/data/fake115uploader  -e --oss-proxy http://127.0.0.1:1085 -c 2051423373887536630 -u /usr/share/nginx/kodexplorer/remote/remote115mv/*
+50 8 * * * v2ray -config /usr/share/nginx/kodexplorer/tw.json &&  /usr/share/nginx/kodexplorer/remote/data/fake115uploader -e --oss-proxy http://127.0.0.1:1085 -c 2051109780465909616  -u /usr/share/nginx/kodexplorer/remote/remote115live/*
+#tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=config --exclude=plugins --exclude=static  --exclude=app  --exclude igvid --exclude backup.tar.gz --exclude *.mp4  --exclude *.mov --exclude *.mkv --exclude *.webm --exclude *.ts --exclude *.m2ts --exclude *.vob --exclude *.mpg --exclude *.avi --exclude *.MP4  --exclude *.MOV --exclude *.MKV --exclude *.WEBM --exclude *.TS --exclude *.M2TS --exclude *.VOB --exclude *.MPG --exclude *.AVI /usr/share/nginx/kodexplorer
 #
 EOF
 
