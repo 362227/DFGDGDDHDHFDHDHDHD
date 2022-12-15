@@ -88,7 +88,7 @@ cat > /var/spool/cron/root <<EOF
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 */20 * * * * /usr/share/nginx/kodexplorer/b.sh
 0 2 * * * cd /usr/share/nginx/kodexplorer/rss/huginn/ && php huginn备份.php
-0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=remote  --exclude=igvid  --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c --exclude backup.tar.gz --exclude=*.mp4  --exclude=*.mov --exclude=*.mkv --exclude=*.webm --exclude=*.ts --exclude=*.m2ts --exclude *.vob --exclude=*.mpg --exclude *.avi --exclude=*.MP4  --exclude=*.MOV --exclude=*.MKV --exclude=*.WEBM --exclude=*.TS --exclude *.M2TS --exclude *.VOB --exclude *.MPG --exclude=*.AVI   /usr/share/nginx/kodexplorer
+0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=remote  --exclude=igvid  --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c --exclude=backup.tar.gz --exclude=*.mp4  --exclude=*.mov --exclude=*.mkv --exclude=*.webm --exclude=*.ts --exclude=*.m2ts --exclude=*.vob --exclude=*.mpg --exclude=*.avi --exclude=*.MP4  --exclude=*.MOV --exclude=*.MKV --exclude=*.WEBM --exclude=*.TS --exclude=*.M2TS --exclude=*.VOB --exclude=*.MPG --exclude=*.AVI   /usr/share/nginx/kodexplorer
 0 4 * * * rclone copy /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated --config=/usr/share/nginx/kodexplorer/rclone.conf
 0 5 * * * rclone move /usr/share/nginx/kodexplorer/igvid/ ysf2020:vimeo --transfers=1 -P --stats-one-line --contimeout 5h --max-depth 1 --size-only --include "*.{mp4,flv}"  --min-age 600m -P
 0 7 * * *  find / -name "*.log" | xargs rm -rf
@@ -96,7 +96,8 @@ cat > /var/spool/cron/root <<EOF
 */49  * * * * 暂停/usr/share/nginx/kodexplorer/rss/ig.php
 */3 * * * *  python3.8 /usr/share/nginx/kodexplorer/selenium/uc.py
 */44 * * * * 暂停 curl -L http://362227.top/rss/FlareSolverrIG.php >  /usr/share/nginx/kodexplorer/flaresolverr/IG.html
-*/10 * * * *  php -f /var/lib/docker/overlay2/a713982dedd2d8f43a6eba5b2baa58041b15d05f9db0b5e1c52b91b53a0be552/merged/var/www/FreshRSS/app/actualize_script.php > /tmp/FreshRSS.log 2>&1
+* * * * * php /usr/share/nginx/kodexplorer/rss/ytb.php > /usr/share/nginx/kodexplorer/rss/ytb.xml
+
 
 #
 EOF
