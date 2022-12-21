@@ -78,6 +78,7 @@ chmod -R 777 /usr/share/nginx/kodexplorer/data/User/admin/home/
 EOF
 cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+0 0 1 */2 * lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9 && acme.sh --issue --standalone --force --renew  -m 362227@163.com -d crowncloud.362227.top && systemctl restart nginx
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 */20 * * * * /usr/share/nginx/kodexplorer/b.sh
