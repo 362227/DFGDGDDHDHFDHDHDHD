@@ -144,8 +144,8 @@ else
     echo -e "${red} qBittorrent软件包下载失败 ${font}"
     exit 1
 fi
-tar -xzvf release-4.1.1.tar.gz
-cd qBittorrent-release-4.1.1
+tar -xzvf release-4.5.0.tar.gz
+cd qBittorrent-release-4.5.0
 ./configure --prefix=/usr --disable-gui CPPFLAGS=-I/usr/include/qt5 CXXFLAGS=-std=c++11
 make -j${CPUcore}
 make install
