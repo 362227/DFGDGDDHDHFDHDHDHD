@@ -137,7 +137,7 @@ fi
 
 # Install qBittorrent
 cd ~
-wget --no-check-certificate https://github.com/qbittorrent/qBittorrent/archive/release-4.1.1.tar.gz
+wget --no-check-certificate https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-4.5.0.tar.gz
 if [ $? -eq 0 ];then
     echo -e "${green} qBittorrent软件包下载成功 ${font}"
 else 
