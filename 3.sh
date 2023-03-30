@@ -15,6 +15,18 @@ ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3.8
 
 pip3 install wheel
 
+#安装python3.9
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+wget https://www.python.org/ftp/python/3.9.3/Python-3.9.3.tgz
+tar -zxvf Python-3.9.3.tgz
+mkdir /usr/local/python3.9.3
+cd Python-3.9.3
+./configure --prefix=/usr/local/python3.9.3
+make && make install
+ln -s /usr/local/python3.9.3/bin/python3.9 /usr/bin/python3.9
+ln -s /usr/local/python3.9.3/bin/pip3.9 /usr/bin/pip3.9
+
+
 #安装streamlink
 pip3.8 install --user --upgrade git+https://github.com/streamlink/streamlink.git
 cp /root/.local/bin/streamlink /usr/local/bin
