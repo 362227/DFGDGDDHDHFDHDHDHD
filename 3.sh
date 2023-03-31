@@ -3,7 +3,7 @@ yum install wget -y
 yum groupinstall "Development Tools" -y
 
 #安装python3.8
-yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+yum -y install gcc zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
 wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
 tar -zxvf Python-3.8.3.tgz
 mkdir /usr/local/python3
@@ -16,7 +16,7 @@ ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3.8
 pip3 install wheel
 
 #安装python3.9
-yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+yum -y install gcc zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
 wget https://www.python.org/ftp/python/3.9.3/Python-3.9.3.tgz
 tar -zxvf Python-3.9.3.tgz
 mkdir /usr/local/python3.9.3
