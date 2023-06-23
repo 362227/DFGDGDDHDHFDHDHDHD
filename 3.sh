@@ -97,22 +97,24 @@ EOF
 cat > /var/spool/cron/root <<EOF
 46 0 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 0 0 1 */2 * lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9 && acme.sh --issue --standalone --force --renew  -m 362227@163.com -d 362227.top && systemctl restart nginx
-0 0 1 */2 * lsof -i:80 | awk '{print $2}' | grep -v "PID" | xargs kill -9 && acme.sh --issue --standalone --force --renew  -m 362227@163.com -d miniflux.362227.top && systemctl restart nginx
 * * * * * /usr/share/nginx/kodexplorer/a.sh
 * * * * * sleep 30; /usr/share/nginx/kodexplorer/a.sh
 */20 * * * * /usr/share/nginx/kodexplorer/b.sh
 0 2 * * * cd /usr/share/nginx/kodexplorer/rss/huginn/ && php huginn备份.php
+0 2 * * * /usr/share/nginx/kodexplorer/GitHub-Backup/backup-gdhdhdh1441414.sh & /usr/share/nginx/kodexplorer/GitHub-Backup/backup-362227.sh & /usr/share/nginx/kodexplorer/GitHub-Backup/backup-10362227.sh
 0 3 * * * tar -zcvf /usr/share/nginx/kodexplorer/backup.tar.gz --exclude=remote  --exclude=igvid  --exclude=config --exclude=plugins --exclude=static --exclude=data --exclude=app --exclude=aria2c --exclude backup.tar.gz --exclude=*.mp4  --exclude=*.mov --exclude=*.mkv --exclude=*.webm --exclude=*.ts --exclude=*.m2ts --exclude *.vob --exclude=*.mpg --exclude *.avi --exclude=*.MP4  --exclude=*.MOV --exclude=*.MKV --exclude=*.WEBM --exclude=*.TS --exclude *.M2TS --exclude *.VOB --exclude *.MPG --exclude=*.AVI   /usr/share/nginx/kodexplorer
 0 4 * * * rclone copy /usr/share/nginx/kodexplorer/backup.tar.gz 10362227:backup --exclude --local-no-check-updated --config=/usr/share/nginx/kodexplorer/rclone.conf
 0 5 * * * rclone move /usr/share/nginx/kodexplorer/igvid/ ysf2020:vimeo --transfers=1 -P --stats-one-line --contimeout 5h --max-depth 1 --size-only --include "*.{mp4,flv}"  --min-age 600m -P
 0 7 * * *  find / -name "*.log" | xargs rm -rf && rm -rf /var/log/journal/*
 * * * * * /usr/share/nginx/kodexplorer/autostartrsshub.sh
 */49  * * * * 暂停/usr/share/nginx/kodexplorer/rss/ig.php
-*/3 * * * *  python3.8 /usr/share/nginx/kodexplorer/selenium/uc.py
+* * * * * 暂停  python3.8 /usr/share/nginx/kodexplorer/selenium/uc.py
 */44 * * * * 暂停 curl -L http://362227.top/rss/FlareSolverrIG.php >  /usr/share/nginx/kodexplorer/flaresolverr/IG.html
-*/10 * * * * systemctl restart 暂停php-fpm
-* * * * * php /usr/share/nginx/kodexplorer/rss/ytb.php > /usr/share/nginx/kodexplorer/rss/ytb.xml
+*/10 * * * * 暂停 systemctl restart php-fpm
+*/15 * * * * php /usr/share/nginx/kodexplorer/rss/ytb.php > /usr/share/nginx/kodexplorer/rss/ytb.xml
 */5 * * * * // curl -L "https://www.362227.top/flaresolverr/flaresolverr.php?url=https://rarbg.to/rss.php?category=42;46;17;47;50;51;44;54;52;45" > /usr/share/nginx/kodexplorer/rss/rarbg.xml
+0 0 * * *  yum -y update google-chrome-stable
+
 
 #
 EOF
