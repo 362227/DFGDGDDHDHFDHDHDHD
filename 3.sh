@@ -1,4 +1,4 @@
-yum install git -y
+yum install git -y 
 yum install wget -y
 yum groupinstall "Development Tools" -y
 
