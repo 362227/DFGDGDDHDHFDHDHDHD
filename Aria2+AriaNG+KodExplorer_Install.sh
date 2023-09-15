@@ -312,7 +312,7 @@ fi
 
 # Download Kodexplorer
 mkdir -p /usr/share/nginx/kodexplorer && cd /usr/share/nginx/kodexplorer
-wget --no-check-certificate https://github.com/p1956/DFGDGDDHDHFDHDHDHD/raw/master/kodexplorer4.40.zip
+wget --no-check-certificate http://static.kodcloud.com/update/download/kodexplorer4.40.zip
 if [ $? -eq 0 ];then
     echo -e "${green} Kodexplorer下载成功 ${font}"
 else 
